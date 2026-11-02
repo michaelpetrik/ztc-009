@@ -1,0 +1,28 @@
+lemma,pos,vid,status,meaning,replace_with,en_ste,ok,bad
+zavřít,V,pf,approved,změnit stav na „zavřený“,,close,Zavřete ventil.,
+zavírat,V,impf,approved,zavřít (trvalá činnost nebo zákaz),,close,Nezavírejte ventil během testu.,
+uzavřít,V,pf,unapproved,,zavřít,,Zavřete ventil.,Uzavřete ventil.
+otevřít,V,pf,approved,změnit stav na „otevřený“,,open,Otevřete kryt.,
+otvírat,V,impf,approved,otevřít (trvalá činnost nebo zákaz),,open,Neotvírejte kryt.,
+odstranit,V,pf,approved,dát pryč z místa,,remove,Odstraňte kryt.,
+vyjmout,V,pf,unapproved,,odstranit,,Odstraňte modul.,Vyjměte modul.
+vyndat,V,pf,unapproved,,odstranit,,Odstraňte filtr.,Vyndejte filtr.
+nainstalovat,V,pf,approved,dát na správné místo a připevnit,,install,Nainstalujte filtr.,
+namontovat,V,pf,unapproved,,nainstalovat,,Nainstalujte kryt.,Namontujte kryt.
+zkontrolovat,V,pf,approved,zjistit stav,,examine,Zkontrolujte tlak.,
+prověřit,V,pf,unapproved,,zkontrolovat,,Zkontrolujte spoj.,Prověřte spoj.
+vyzkoušet,V,pf,approved,spustit a zjistit funkci,,test,Vyzkoušejte čerpadlo.,
+přezkoušet,V,pf,unapproved,,vyzkoušet,,Vyzkoušejte čerpadlo.,Přezkoušejte čerpadlo.
+začít,V,pf,approved,udělat první krok činnosti,,start,Začněte test.,
+zahájit,V,pf,unapproved,,začít,,Začněte test.,Zahajte test.
+zastavit,V,pf,approved,ukončit pohyb nebo činnost,,stop,Zastavte motor.,
+ukončit,V,pf,unapproved,,zastavit,,Zastavte proces.,Ukončete proces.
+provést,V,pf,unapproved,,@3.7,,Vyměňte filtr.,Proveďte výměnu filtru.
+muset,V,impf,approved,povinnost,,must,Ventil musí být zavřený.,
+moci,V,impf,approved,možnost nebo schopnost,,can,Můžete nastavit hlasitost.,
+nutný,ADJ,,unapproved,,muset|@5.3,,Odpojte napájení.,Je nutné odpojit napájení.
+jestliže,CONJ,,approved,podmínka,,if,"Jestliže kontrolka svítí, vyměňte filtr.",
+pokud,CONJ,,unapproved,,jestliže,,"Jestliže tlak klesne, zastavte motor.","Pokud tlak klesne, zastavte motor."
+když,CONJ,,approved,čas,,when,"Když motor běží, nedotýkejte se krytu.",
+potom,ADV,,approved,následující krok,,then,Potom zavřete ventil.,
+následně,ADV,,unapproved,,potom,,Potom zavřete ventil.,Následně zavřete ventil.

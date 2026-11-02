@@ -1,0 +1,53 @@
+name: Změna pravidla
+description: Navrhněte změnu pravidla, vysvětlení nebo doporučení.
+title: "[pravidlo] "
+labels: ["pravidlo"]
+body:
+  - type: input
+    id: rule
+    attributes:
+      label: Číslo pravidla
+      placeholder: "3.6 nebo D-2"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Typ změny
+      options:
+        - Nové vysvětlení [CZ]
+        - Nový příklad
+        - Změna textu pravidla
+        - Změna limitu
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problém
+      description: Co je teď špatně nebo nejasné?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Návrh
+      description: Napište nový text v ZTČ-009.
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Příklady
+      value: |
+        ✗
+        ✓
+    validations:
+      required: true
+  - type: checkboxes
+    id: legal
+    attributes:
+      label: Autorské právo
+      options:
+        - label: Text je můj. Text není kopie ani překlad textu ASD-STE100.
+          required: true

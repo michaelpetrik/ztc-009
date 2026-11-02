@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Otázky a nápady
+    url: https://github.com/OWNER/ztc-009/discussions
+    about: Pro diskusi použijte Discussions.
+  - name: Originál ASD-STE100
+    url: https://www.asd-ste100.org
+    about: Oficiální specifikace Simplified Technical English (zdarma).

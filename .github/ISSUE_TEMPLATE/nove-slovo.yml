@@ -1,0 +1,63 @@
+name: Nové slovo
+description: Navrhněte nové slovo do slovníku nebo změnu hesla.
+title: "[slovo] "
+labels: ["slovnik"]
+body:
+  - type: markdown
+    attributes:
+      value: Vyplňte jedno heslo. Pište v ZTČ-009. Nekopírujte text z ASD-STE100.
+  - type: input
+    id: lemma
+    attributes:
+      label: Lemma
+      description: Základní tvar slova.
+      placeholder: zavřít
+    validations:
+      required: true
+  - type: dropdown
+    id: pos
+    attributes:
+      label: Slovní druh
+      options: [V, N, ADJ, ADV, PREP, CONJ, PRON, NUM]
+    validations:
+      required: true
+  - type: dropdown
+    id: vid
+    attributes:
+      label: Vid (jen sloveso)
+      options: ["—", pf, impf]
+  - type: dropdown
+    id: status
+    attributes:
+      label: Stav
+      options: [approved, unapproved]
+    validations:
+      required: true
+  - type: input
+    id: meaning
+    attributes:
+      label: Význam (approved) nebo náhrada (unapproved)
+      placeholder: změnit stav na „zavřený"
+    validations:
+      required: true
+  - type: input
+    id: en_ste
+    attributes:
+      label: Anglické heslo STE
+      placeholder: close
+  - type: textarea
+    id: examples
+    attributes:
+      label: Příklady
+      value: |
+        ✓
+        ✗
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Důvod
+      description: Proč žádné schválené slovo nemá tento význam?
+    validations:
+      required: true

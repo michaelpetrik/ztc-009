@@ -1,0 +1,22 @@
+name: Chyba
+description: Nahlaste chybu v textu, příkladu nebo nástroji.
+title: "[chyba] "
+labels: ["chyba"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Kde je chyba
+      placeholder: "spec/ztc-009.md, pravidlo 5.3"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: Popis chyby
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: Návrh opravy

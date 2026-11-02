@@ -1,0 +1,10 @@
+config:
+  default: true
+  MD013: false        # délka řádku: tabulky a příklady
+  MD024:
+    siblings_only: true
+  MD033: false        # HTML komentáře v LLM profilu
+  MD036: false        # tučné „VAROVÁNÍ" mimo nadpis
+  MD041: false        # LLM profil začíná komentářem
+ignores:
+  - "**/LICENSE"
