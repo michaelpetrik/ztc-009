@@ -11,7 +11,7 @@ ZTČ-009 má 9 sekcí a 53 pravidel.
 ## Obsah
 
 | Soubor | Pro koho | Popis |
-|---|---|---|
+| --- | --- | --- |
 | [`spec/ztc-009.md`](spec/ztc-009.md) | lidé | úplná specifikace s vysvětlením a příklady |
 | [`llm/ztc-009.llm.md`](llm/ztc-009.llm.md) | jazykové modely | system prompt, pravidla jako kontrolní seznam |
 | [`slovnik/ztc-009.csv`](slovnik/ztc-009.csv) | lidé a programy | slovník schválených a neschválených slov |
@@ -41,7 +41,7 @@ Návrhy jsou vítané. Postup je v souboru [CONTRIBUTING.md](CONTRIBUTING.md).
 ## Licence
 
 | Část | Licence |
-|---|---|
+| --- | --- |
 | Specifikace, LLM profil, dokumentace | [CC BY-SA 4.0](LICENSE) |
 | Slovník (`slovnik/`) | [CC0 1.0](slovnik/LICENSE) |
 | Nástroje (`tools/`) | [MIT](tools/LICENSE) |

@@ -6,7 +6,7 @@ Licence slovníku je CC0 1.0. Slovník můžete použít bez omezení.
 ## Sloupce
 
 | Sloupec | Popis | Povinné |
-|---|---|---|
+| --- | --- | --- |
 | `lemma` | základní tvar slova | ano |
 | `pos` | slovní druh: `V`, `N`, `ADJ`, `ADV`, `PREP`, `CONJ`, `PRON`, `NUM` | ano |
 | `vid` | `pf` (dokonavý) nebo `impf` (nedokonavý) | jen pro `V` |

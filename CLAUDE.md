@@ -7,7 +7,7 @@ ZTČ-009 = český řízený jazyk pro technickou dokumentaci. Struktura 1:1 s A
 ## Soubory
 
 | Cesta | Účel |
-|---|---|
+| --- | --- |
 | `spec/ztc-009.md` | specifikace pro lidi (zdroj pravdy) |
 | `llm/ztc-009.llm.md` | system prompt pro LLM, musí odpovídat spec |
 | `slovnik/ztc-009.csv` | slovník, schéma v `slovnik/README.md` |
