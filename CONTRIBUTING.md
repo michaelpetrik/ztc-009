@@ -37,6 +37,8 @@ Pull request můžeme sloučit, jen když CI projde.
 
 ## Pravidla pro slovník
 
+Přečtěte si [pravidla tvorby](slovnik/RULEBOOK.md) a [postup pro nový obor](slovnik/GUIDELINES.md).
+
 - Jedno lemma má jen jeden schválený význam a jeden slovní druh.
 - Neschválené slovo musí mít minimálně jednu schválenou náhradu.
 - Přidejte nové schválené slovo, jen když žádné schválené slovo nemá potřebný význam.

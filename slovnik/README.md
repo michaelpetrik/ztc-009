@@ -3,6 +3,17 @@
 Soubor `ztc-009.csv` obsahuje slovník ZTČ-009.
 Licence slovníku je CC0 1.0. Slovník můžete použít bez omezení.
 
+## Obsah a tvorba
+
+Projekt používá jeden společný CSV slovník.
+Původní základ obsahuje 27 hesel pro obecné technické postupy, převážně s příklady z mechaniky.
+Počáteční sada [IT a vývoj softwaru](IT.md) přidává 24 hesel. Celkem je v CSV 51 hesel.
+Samostatné CSV slovníky pro jednotlivé obory zatím nejsou podporované.
+
+- [Pravidla pro tvorbu slovníku](RULEBOOK.md): významy, stavy, příklady a přijetí změn.
+- [Postup pro nový obor](GUIDELINES.md): společná práce agenta a uživatele, příprava příspěvku a kontroly.
+- [IT a vývoj softwaru](IT.md): rozsah počáteční sady a hranice významů.
+
 ## Sloupce
 
 | Sloupec | Popis | Povinné |

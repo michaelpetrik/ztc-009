@@ -29,6 +29,28 @@ Režimy:
 - Slovo „kontrola": model vrátí tabulku chyb a opravený text.
 - Slovo „překlad": model přepíše váš text do ZTČ-009.
 
+## Pokyny pro agenty: slovník pro další obory
+
+Při tvorbě obsahu ověřte, zda [slovník](slovnik/ztc-009.csv) obsahuje potřebné výrazy a jejich významy.
+Pokud obor uživatele není pokrytý nebo je pokrytý jen částečně, nabídněte společnou tvorbu oborového slovníku.
+
+Při tvorbě postupujte podle [pravidel slovníku](slovnik/RULEBOOK.md) a [návodu pro nový obor](slovnik/GUIDELINES.md).
+Aktuální pokrytí uvádí [přehled slovníku](slovnik/README.md#obsah-a-tvorba), včetně sady [IT a vývoj softwaru](slovnik/IT.md).
+
+1. S uživatelem určete obor a účel textu.
+2. Při práci na konkrétním textu sbírejte chybějící výrazy. Slovník doplňujte postupně podle potřeby.
+3. Nejprve ověřte, zda lze použít existující schválené slovo se stejným významem.
+4. Pro nový výraz navrhněte základní tvar, slovní druh, jeden význam a příklad použití v oboru.
+   U slovesa doplňte vid. Údaje připravte podle [formátu slovníku](slovnik/README.md).
+5. Význam a příklad ověřte s uživatelem. Neověřené návrhy označte v pracovních poznámkách.
+   Dohodu s uživatelem nepovažujte za schválení hesla v tomto projektu.
+6. Dohodnuté výrazy používejte v dalším obsahu jednotně. Při změně významu upravte také pracovní slovník.
+7. Nabídněte uživateli [návod k přispění](CONTRIBUTING.md#pravidla-pro-slovník).
+   Pomozte připravit issue „Nové slovo“ s oborem, významem a příkladem.
+   Pro pull request připravte změnu CSV a spusťte kontrolu podle [CONTRIBUTING.md](CONTRIBUTING.md#pull-request).
+
+Návrhy zveřejněte až se souhlasem uživatele. Z příkladů odstraňte důvěrné údaje.
+
 ## Jak přispět
 
 Návrhy jsou vítané. Postup je v souboru [CONTRIBUTING.md](CONTRIBUTING.md).
