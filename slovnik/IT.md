@@ -1,8 +1,9 @@
 # Vývoj softwaru: fullstack
 
-[Slovník vývoje softwaru](software-development.csv) obsahuje 96 hesel.
+[Slovník vývoje softwaru](software-development.csv) pokrývá základní fullstack pojmy.
 Používejte jej spolu se [základním slovníkem](ztc-009.csv), který obsahuje 27 hesel.
-Definice a příklady jsou v CSV. Nová hesla jsou návrhem pro odborné posouzení před přijetím PR.
+Definice a příklady jsou v CSV. Lexikální `approved` není potvrzení odborné revize.
+U generovaných definic nebyla dosud provedena nezávislá odborná revize.
 
 ## Pokrytí
 

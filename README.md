@@ -18,39 +18,28 @@ ZTČ-009 má 9 sekcí a 53 pravidel.
 | [`slovnik/software-development.csv`](slovnik/software-development.csv) | lidé a programy | frontend, backend, databáze a infrastruktura |
 | [`tools/`](tools) | vývojáři | validátor v jazyce Go |
 
-## Jak použít ZTČ-009 s jazykovým modelem
+## Instalace pro agenty
 
-1. Zkopírujte obsah souboru `llm/ztc-009.llm.md`.
-2. Vložte obsah do system promptu.
-3. Napište zadání.
+Použijte [instalační návod](docs/INSTALL.md) a [skill ztc-install](skills/ztc-install/SKILL.md).
+Agent nejprve zjistí profesi a témata, pro která chcete ZTČ používat.
+Pro chybějící obor vytvoří pracovní slovník a nabídne jeho zveřejnění přes PR až po vašem souhlasu.
+Před publikací ověří GitHub connector, `gh` nebo jiný nástroj schopný vytvořit PR.
+Příspěvek pomůže dalším instalacím ve stejném oboru. GitHub není podmínkou místního použití.
 
-Režimy:
+Balíček obsahuje skills a hooky pro Claude Code a Codex.
+Pro jiné agenty použijte skills a trvalé instrukce podle možností hostitele.
+Triviální dotazy s úplnou jednovětou odpovědí používají běžný styl.
 
-- Normální zadání: model napíše text v ZTČ-009.
-- Slovo „kontrola": model vrátí tabulku chyb a opravený text.
-- Slovo „překlad": model přepíše váš text do ZTČ-009.
+## Použití bez pluginu
 
-## Pokyny pro agenty: slovník pro další obory
+Pro jednorázovou úpravu textu dejte modelu [LLM profil](llm/ztc-009.llm.md) a příslušné [slovníky](slovnik/README.md).
+Výslovně určete text, který má model upravit. Pro trvalé použití s výběrem témat použijte instalační návod.
 
-Při tvorbě obsahu ověřte, zda příslušný [slovník](slovnik/README.md#obsah-a-tvorba) obsahuje potřebné výrazy a jejich významy.
-Pokud obor uživatele není pokrytý nebo je pokrytý jen částečně, nabídněte společnou tvorbu oborového slovníku.
+## Tvorba slovníků s agentem
 
-Při tvorbě postupujte podle [pravidel slovníku](slovnik/RULEBOOK.md) a [návodu pro nový obor](slovnik/GUIDELINES.md).
-Aktuální pokrytí uvádí [přehled slovníku](slovnik/README.md#obsah-a-tvorba), včetně sady [IT a vývoj softwaru](slovnik/IT.md).
-
-1. S uživatelem určete obor a účel textu.
-2. Při práci na konkrétním textu sbírejte chybějící výrazy. Slovník doplňujte postupně podle potřeby.
-3. Nejprve ověřte, zda lze použít existující schválené slovo se stejným významem.
-4. Pro nový výraz navrhněte základní tvar, slovní druh, jeden význam a příklad použití v oboru.
-   U slovesa doplňte vid. Údaje připravte podle [formátu slovníku](slovnik/README.md).
-5. Význam a příklad ověřte s uživatelem. Neověřené návrhy označte v pracovních poznámkách.
-   Dohodu s uživatelem nepovažujte za schválení hesla v tomto projektu.
-6. Dohodnuté výrazy používejte v dalším obsahu jednotně. Při změně významu upravte také pracovní slovník.
-7. Nabídněte uživateli [návod k přispění](CONTRIBUTING.md#pravidla-pro-slovník).
-   Pomozte připravit issue „Nové slovo“ s oborem, významem a příkladem.
-   Pro pull request připravte změnu CSV a spusťte kontrolu podle [CONTRIBUTING.md](CONTRIBUTING.md#pull-request).
-
-Návrhy zveřejněte až se souhlasem uživatele. Z příkladů odstraňte důvěrné údaje.
+Použijte [pravidla](slovnik/RULEBOOK.md) a [postup pro nový obor](slovnik/GUIDELINES.md).
+Agent postupně sbírá potřebné výrazy, ověří s vámi jejich význam a zachová jednotné názvy.
+Pracovní slovník zůstává místní. Jeden ucelený profesní slovník lze nabídnout jedním PR.
 
 ## Jak přispět
 

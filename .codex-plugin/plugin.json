@@ -1,0 +1,10 @@
+{
+  "name": "ztc-009",
+  "version": "0.1.0",
+  "description": "Zjednodušená technická čeština pro vybrané profesní obory",
+  "author": {
+    "name": "Michael Petrik"
+  },
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json"
+}

@@ -5,13 +5,13 @@ Licence slovníku je CC0 1.0. Slovník můžete použít bez omezení.
 
 ## Obsah a tvorba
 
-Projekt obsahuje dva slovníky se stejným formátem CSV:
+Publikované slovníky používají stejný formát CSV:
 
-- [Základní slovník](ztc-009.csv): 27 hesel pro obecné technické postupy, převážně s příklady z mechaniky.
-- [Vývoj softwaru](software-development.csv): 96 hesel pro frontend, backend, databáze a infrastrukturu.
+- [Základní slovník](ztc-009.csv): hesla pro obecné technické postupy, převážně s příklady z mechaniky.
+- [Vývoj softwaru](software-development.csv): hesla pro frontend, backend, databáze a infrastrukturu.
 
 Při psaní o softwaru používejte oba soubory. Rozsah a hranice významů popisuje [IT.md](IT.md).
-Validátor a CI kontrolují oba soubory. Každý soubor musí mít vlastní platné náhrady.
+Validátor a CI kontrolují všechny soubory `slovnik/*.csv`. Základní `ztc-009.csv` je povinný. Každý soubor musí mít vlastní platné náhrady.
 
 - [Pravidla pro tvorbu slovníku](RULEBOOK.md): významy, stavy, příklady a přijetí změn.
 - [Postup pro nový obor](GUIDELINES.md): společná práce agenta a uživatele, příprava příspěvku a kontroly.

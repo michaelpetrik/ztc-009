@@ -3,6 +3,9 @@ package dictionary
 import (
 	"fmt"
 	"regexp"
+	"strconv"
+
+	"github.com/ztc-009/ztc-009/tools/internal/spec"
 )
 
 // Rule validates a single entry against the whole dictionary context.
@@ -32,7 +35,7 @@ func NewContext(entries []Entry) *Context {
 var (
 	validPOS    = map[string]bool{"V": true, "N": true, "ADJ": true, "ADV": true, "PREP": true, "CONJ": true, "PRON": true, "NUM": true}
 	validAspect = map[string]bool{"pf": true, "impf": true}
-	ruleRef     = regexp.MustCompile(`^@[1-9]\.[0-9]{1,2}$`)
+	ruleRef     = regexp.MustCompile(`^@([1-9])\.([1-9][0-9]?)$`)
 )
 
 type ruleFunc struct {
@@ -100,7 +103,13 @@ var DefaultRules = []Rule{
 	ruleFunc{"replacement", func(e Entry, c *Context) []string {
 		var m []string
 		for _, r := range e.ReplaceWith {
-			if !ruleRef.MatchString(r) && !c.approvedLemmas[r] {
+			validRule := false
+			if match := ruleRef.FindStringSubmatch(r); match != nil {
+				section, _ := strconv.Atoi(match[1])
+				number, _ := strconv.Atoi(match[2])
+				validRule = number <= spec.ExpectedRules[section]
+			}
+			if !validRule && !c.approvedLemmas[r] {
 				m = append(m, fmt.Sprintf("replacement %q is not an approved lemma or @X.Y rule ref", r))
 			}
 		}

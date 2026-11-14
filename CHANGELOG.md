@@ -6,6 +6,18 @@ Formát: [Keep a Changelog](https://keepachangelog.com/cs/1.1.0/). Verze: [SemVe
 
 ### Přidáno
 
+- Přenosné instalační a odpovědní skills s výběrem profesních témat a dobrovolným příspěvkem přes PR.
+- Pluginové manifesty pro Claude Code a Codex se společným hookem bez síťového přístupu.
+- Automatická validace oborových CSV a samostatná kontrola pracovního slovníku pomocí `-dictionary`.
+- Týmový audit pravidel a instalačního postupu.
+
+### Opraveno
+
+- Oddělení stavu příspěvku od lexikálního `status` a zjednodušení příspěvku na jeden PR pro obor.
+- Kontrola existence odkazovaných pravidel a zachování modality při úpravě textu.
+
+### Dříve přidáno
+
 - Pokyny pro agenty k postupné tvorbě oborového slovníku s uživatelem.
 - Pravidla tvorby slovníku a postup pro nové obory.
 - Samostatný slovník vývoje softwaru: 96 hesel pro frontend, backend, databáze a infrastrukturu.
