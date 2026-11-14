@@ -1,0 +1,13 @@
+{
+  "name": "michaelpetrik-ztc",
+  "owner": {
+    "name": "Michael Petrik"
+  },
+  "plugins": [
+    {
+      "name": "ztc-009",
+      "description": "Controlled Czech responses with professional dictionaries and installation guidance.",
+      "source": "./"
+    }
+  ]
+}

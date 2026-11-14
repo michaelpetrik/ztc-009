@@ -1,0 +1,40 @@
+{
+  "name": "ztc-009",
+  "version": "0.1.0",
+  "description": "Zjednodušená technická čeština pro vybraná profesní témata",
+  "type": "module",
+  "keywords": [
+    "pi-package"
+  ],
+  "files": [
+    "extensions/",
+    "skills/",
+    "llm/",
+    "slovnik/",
+    "spec/",
+    "hooks/",
+    ".claude-plugin/",
+    ".codex-plugin/",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "NOTICE",
+    ".agents/plugins/",
+    "docs/INSTALL.md",
+    "docs/CHAT.md",
+    "docs/HARNESSES.md",
+    "docs/ztc-flow.svg",
+    "docs/ztc-flow.mmd",
+    "tools/**/*.go",
+    "tools/go.mod",
+    "tools/LICENSE"
+  ],
+  "pi": {
+    "skills": [
+      "./skills"
+    ],
+    "extensions": [
+      "./extensions/ztc.js"
+    ]
+  }
+}

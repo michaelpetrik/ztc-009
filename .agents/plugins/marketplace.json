@@ -1,0 +1,20 @@
+{
+  "name": "ztc-009",
+  "interface": {
+    "displayName": "ZTČ-009"
+  },
+  "plugins": [
+    {
+      "name": "ztc-009",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

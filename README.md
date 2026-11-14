@@ -13,21 +13,46 @@ ZTČ-009 má 9 sekcí a 53 pravidel.
 | Soubor | Pro koho | Popis |
 | --- | --- | --- |
 | [`spec/ztc-009.md`](spec/ztc-009.md) | lidé | úplná specifikace s vysvětlením a příklady |
-| [`llm/ztc-009.llm.md`](llm/ztc-009.llm.md) | jazykové modely | system prompt, pravidla jako kontrolní seznam |
+| [`llm/ztc-009.llm.md`](llm/ztc-009.llm.md) | jazykové modely | profil s výběrem rozsahu, pravidla jako kontrolní seznam |
 | [`slovnik/ztc-009.csv`](slovnik/ztc-009.csv) | lidé a programy | slovník schválených a neschválených slov |
+| [`slovnik/software-development.csv`](slovnik/software-development.csv) | lidé a programy | frontend, backend, databáze a infrastruktura |
 | [`tools/`](tools) | vývojáři | validátor v jazyce Go |
 
-## Jak použít ZTČ-009 s jazykovým modelem
+## Začněte v Claude nebo ChatGPT
 
-1. Zkopírujte obsah souboru `llm/ztc-009.llm.md`.
-2. Vložte obsah do system promptu.
-3. Napište zadání.
+Použijte [instrukci pro běžný chat](docs/CHAT.md#rychlé-použití). Stačí ji vložit do zprávy.
+Plugin, GitHub ani terminál nejsou potřeba. Model nejprve zjistí profesi a témata, pokud je ještě nezná.
+Pro všechna pravidla vložte [úplný LLM profil](llm/ztc-009.llm.md) a potom napište „Odpovídej mi v TZČ-009“.
+Pouhý název stylu bez pravidel nezaručuje znalost ZTČ-009. Triviální jednověté odpovědi zůstávají přirozené.
 
-Režimy:
+## Instalace podle prostředí
 
-- Normální zadání: model napíše text v ZTČ-009.
-- Slovo „kontrola": model vrátí tabulku chyb a opravený text.
-- Slovo „překlad": model přepíše váš text do ZTČ-009.
+[Claude, Cowork, Claude Code, ChatGPT, Codex a Pi](docs/HARNESSES.md): podporované cesty, příkazy a stav ověření.
+Pro Pi je připravená jednopříkazová cesta, nikoli ověřené univerzální instalační tlačítko.
+Veřejný GitHub při auditu ještě neobsahoval nový balíček; instalační příkazy z Gitu čekají na publikaci.
+
+## Volitelný plugin pro agenty
+
+Použijte [instalační návod](docs/INSTALL.md) a [skill ztc-install](skills/ztc-install/SKILL.md).
+Agent nejprve zjistí profesi a témata, pro která chcete ZTČ používat.
+Pro chybějící obor vytvoří pracovní slovník a nabídne jeho zveřejnění přes PR až po vašem souhlasu.
+Před publikací ověří GitHub connector, `gh` nebo jiný nástroj schopný vytvořit PR.
+Příspěvek pomůže dalším instalacím ve stejném oboru. GitHub není podmínkou místního použití.
+
+Balíček obsahuje skills a hooky pro Claude Code a Codex.
+Pro jiné agenty použijte skills a trvalé instrukce podle možností hostitele.
+Triviální dotazy s úplnou jednovětou odpovědí používají běžný styl.
+
+## Použití bez pluginu
+
+Pro jednorázovou úpravu textu dejte modelu [LLM profil](llm/ztc-009.llm.md) a příslušné [slovníky](slovnik/README.md).
+Výslovně určete text, který má model upravit. Pro použití v celém chatu postupujte podle [návodu pro Claude a ChatGPT](docs/CHAT.md).
+
+## Tvorba slovníků s agentem
+
+Použijte [pravidla](slovnik/RULEBOOK.md) a [postup pro nový obor](slovnik/GUIDELINES.md).
+Agent postupně sbírá potřebné výrazy, ověří s vámi jejich význam a zachová jednotné názvy.
+Pracovní slovník zůstává místní. Jeden ucelený profesní slovník lze nabídnout jedním PR.
 
 ## Jak přispět
 

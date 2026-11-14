@@ -14,7 +14,8 @@ Dokument je napsaný v ZTČ-009.
 
 | Návrh | Postup |
 | --- | --- |
-| Nové slovo | Založte issue „Nové slovo". Potom můžete poslat pull request se změnou souboru `slovnik/ztc-009.csv`. |
+| Nové slovo | Pošlete PR do příslušného CSV v `slovnik/`. Issue „Nové slovo“ použijte pro nejasnosti. |
+| Nový profesní slovník | Pošlete jeden PR s CSV, rozsahem oboru a způsobem ověření významů. |
 | Změna pravidla | Založte issue „Změna pravidla". Počkejte na diskusi. Potom pošlete pull request. |
 | Chyba v textu | Pošlete pull request přímo. |
 | Otázka nebo nápad | Napište do Discussions. |
@@ -37,9 +38,12 @@ Pull request můžeme sloučit, jen když CI projde.
 
 ## Pravidla pro slovník
 
+Přečtěte si [pravidla tvorby](slovnik/RULEBOOK.md) a [postup pro nový obor](slovnik/GUIDELINES.md).
+
 - Jedno lemma má jen jeden schválený význam a jeden slovní druh.
-- Neschválené slovo musí mít minimálně jednu schválenou náhradu.
+- Neschválené slovo musí mít schválenou náhradu nebo odkaz na existující pravidlo.
 - Přidejte nové schválené slovo, jen když žádné schválené slovo nemá potřebný význam.
+  Výjimkou je běžná technická zkratka plného názvu podle pravidel slovníku.
 - Formát sloupců je v souboru [slovnik/README.md](slovnik/README.md).
 
 ## Pravidla pro specifikaci

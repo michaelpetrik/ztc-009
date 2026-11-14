@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
 
 	"github.com/ztc-009/ztc-009/tools/internal/dictionary"
 	"github.com/ztc-009/ztc-009/tools/internal/issue"
@@ -17,24 +18,52 @@ import (
 	"github.com/ztc-009/ztc-009/tools/internal/version"
 )
 
-func checkers(root string) []issue.Checker {
+func checkers(root string) ([]issue.Checker, error) {
 	p := func(rel string) string { return filepath.Join(root, rel) }
-	return []issue.Checker{
+	entries, err := os.ReadDir(p("slovnik"))
+	if err != nil {
+		return nil, err
+	}
+	base, err := os.Stat(p("slovnik/ztc-009.csv"))
+	if err != nil {
+		return nil, err
+	}
+	if !base.Mode().IsRegular() {
+		return nil, fmt.Errorf("base dictionary is not a regular file")
+	}
+	checks := []issue.Checker{
 		spec.Checker{Path: p("spec/ztc-009.md")},
-		dictionary.NewChecker(p("slovnik/ztc-009.csv")),
 		version.Checker{Sources: []version.Source{
 			{Path: p("spec/ztc-009.md"), Pattern: regexp.MustCompile(`\|\s*\*\*Verze\*\*\s*\|\s*(\S+)\s*\|`)},
 			{Path: p("llm/ztc-009.llm.md"), Pattern: regexp.MustCompile(`LLM profil v(\S+)`)},
 		}},
 	}
+	for _, entry := range entries {
+		if strings.HasSuffix(entry.Name(), ".csv") {
+			checks = append(checks, dictionary.NewChecker(p(filepath.Join("slovnik", entry.Name()))))
+		}
+	}
+	return checks, nil
 }
 
 func main() {
 	root := flag.String("root", ".", "repository root")
+	localDictionary := flag.String("dictionary", "", "validate one working dictionary without repository checks")
 	flag.Parse()
+	var checks []issue.Checker
+	if *localDictionary != "" {
+		checks = []issue.Checker{dictionary.NewChecker(*localDictionary)}
+	} else {
+		var err error
+		checks, err = checkers(*root)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(2)
+		}
+	}
 
 	findings := 0
-	for _, c := range checkers(*root) {
+	for _, c := range checks {
 		issues, err := c.Check()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "%s: %v\n", c.Name(), err)
