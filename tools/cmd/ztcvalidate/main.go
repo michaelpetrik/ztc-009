@@ -22,6 +22,7 @@ func checkers(root string) []issue.Checker {
 	return []issue.Checker{
 		spec.Checker{Path: p("spec/ztc-009.md")},
 		dictionary.NewChecker(p("slovnik/ztc-009.csv")),
+		dictionary.NewChecker(p("slovnik/software-development.csv")),
 		version.Checker{Sources: []version.Source{
 			{Path: p("spec/ztc-009.md"), Pattern: regexp.MustCompile(`\|\s*\*\*Verze\*\*\s*\|\s*(\S+)\s*\|`)},
 			{Path: p("llm/ztc-009.llm.md"), Pattern: regexp.MustCompile(`LLM profil v(\S+)`)},
