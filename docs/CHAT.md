@@ -9,7 +9,8 @@ Název „ZTČ-009“ sám o sobě nezaručuje, že model zná pravidla tohoto p
 Vložte do chatu tento samostatný text:
 
 ```text
-Odpovídej mi v tomto chatu zjednodušenou technickou češtinou podle následujícího stručného profilu ZTČ-009.
+Odpovídej mi v TZČ-009 podle následujícího stručného profilu ZTČ-009.
+TZČ-009 je zde přijímaná varianta označení ZTČ-009 (Zjednodušená technická čeština).
 Nejprve se jednou zeptej na profesi a témata, pro která chci tento styl používat, pokud je ještě neznáš.
 Moje volby si ponech v kontextu tohoto chatu. Pokud řeknu „všechna témata“, respektuj to.
 Piš krátké, konkrétní věty. Jedna věta má jedno hlavní sdělení.
@@ -39,7 +40,7 @@ Soubory lze také přiložit, pokud je dané prostředí umí číst. Samotný o
 
 Potom stačí například:
 
-> Odpovídej mi v ZTČ pro vývoj softwaru. Triviální jednověté odpovědi nech přirozené.
+> Odpovídej mi v TZČ-009 pro vývoj softwaru. Triviální jednověté odpovědi nech přirozené.
 
 Bez známých témat se model nejprve zeptá. Při uvedení témat v zadání otázku neopakuje.
 Žádost „přepiš tuto větu do ZTČ“ platí jen pro daný text, nikoli automaticky pro další chat.

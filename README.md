@@ -22,7 +22,7 @@ ZTČ-009 má 9 sekcí a 53 pravidel.
 
 Použijte [instrukci pro běžný chat](docs/CHAT.md#rychlé-použití). Stačí ji vložit do zprávy.
 Plugin, GitHub ani terminál nejsou potřeba. Model nejprve zjistí profesi a témata, pokud je ještě nezná.
-Pro všechna pravidla vložte [úplný LLM profil](llm/ztc-009.llm.md) a potom napište „Odpovídej mi v ZTČ“.
+Pro všechna pravidla vložte [úplný LLM profil](llm/ztc-009.llm.md) a potom napište „Odpovídej mi v TZČ-009“.
 Pouhý název stylu bez pravidel nezaručuje znalost ZTČ-009. Triviální jednověté odpovědi zůstávají přirozené.
 
 ## Volitelný plugin pro agenty

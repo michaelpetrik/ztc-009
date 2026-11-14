@@ -6,6 +6,8 @@ Formát: [Keep a Changelog](https://keepachangelog.com/cs/1.1.0/). Verze: [SemVe
 
 ### Přidáno
 
+- Spouštěcí instrukce „Odpovídej mi v TZČ-009“ a rozpoznání této varianty názvu ZTČ-009.
+
 - Textová instrukce pro běžný Claude a ChatGPT bez pluginu a bez přístupu k souborům.
 - Rozlišení průběžné žádosti o ZTČ od převodu konkrétního textu; triviální odpovědi zůstávají přirozené.
 

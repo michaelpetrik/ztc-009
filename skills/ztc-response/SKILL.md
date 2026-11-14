@@ -5,9 +5,12 @@ description: Použijte ZTČ-009 pro odpověď v uživatelem potvrzeném okruhu t
 
 # Odpovědi v ZTČ-009
 
+Označení `TZČ-009` a `ZTČ-009` rozpoznávej jako tentýž styl bez ohledu na velikost písmen.
+Název specifikace zůstává ZTČ-009.
+
 ## Rozhodnutí před načtením pravidel
 
-Průběžná žádost „odpovídej mi v ZTČ“ vytváří nastavení tohoto chatu, nikoli výjimku pro každou další odpověď.
+Průběžná žádost „odpovídej mi v TZČ-009“ vytváří nastavení tohoto chatu, nikoli výjimku pro každou další odpověď.
 Jednou zjistěte chybějící témata a profesi. Již známé volby použijte bez opakování otázky.
 Potvrzené nastavení v kontextu chatu stačí i bez místního profilu. Výjimka pro triviální dotazy platí dál.
 
