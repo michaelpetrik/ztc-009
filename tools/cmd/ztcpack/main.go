@@ -38,6 +38,8 @@ var files = []string{
 	"slovnik/LICENSE",
 	"slovnik/README.md",
 	"slovnik/RULEBOOK.md",
+	"slovnik/software-development.csv",
+	"slovnik/ztc-009.csv",
 	"spec/ztc-009.md",
 	"tools/LICENSE",
 	"tools/cmd/ztcpack/main.go",
@@ -54,13 +56,6 @@ var required = []string{".claude-plugin/plugin.json", ".codex-plugin/plugin.json
 
 func collect(root, output string) ([]string, error) {
 	candidates := append([]string{}, files...)
-	dictionaries, err := filepath.Glob(filepath.Join(root, "slovnik", "*.csv"))
-	if err != nil {
-		return nil, err
-	}
-	for _, path := range dictionaries {
-		candidates = append(candidates, filepath.Join("slovnik", filepath.Base(path)))
-	}
 	needed := map[string]bool{}
 	for _, name := range required {
 		needed[filepath.FromSlash(name)] = true

@@ -25,6 +25,9 @@ Lokální složku a vytvořený ZIP lze použít bez čekání na publikaci.
 V rozhraní s dostupnými pluginy otevřete Customize → Plugins → Add → Upload plugin.
 Nahrajte celý `ztc-009.zip`. Archiv obsahuje jeden `.claude-plugin/plugin.json` a všechny podklady skills.
 Nerozbalujte jej na samostatné skill ZIPy: jejich relativní odkazy potřebují celý balíček.
+Čtení souborů mimo složku skillu v Claude chatu a Coworku zatím není živě ověřené.
+Po uploadu ověřte načtení LLM profilu a zvoleného CSV; bez nich instalaci neoznačujte za funkční.
+Při nedostupných souborech použijte textovou cestu z [CHAT.md](CHAT.md#úplná-pravidla).
 
 V Claude chatu hooks neběží. Aktivujte styl instrukcí nebo vyvoláním skillu.
 Cowork a Claude Code hooks podporují, ale jejich povolení a účinek ověřte samostatně.
@@ -121,7 +124,7 @@ go run ./cmd/ztcpack -root .. -out ../dist/ztc-009.zip
 
 Go potřebuje pouze správce, který archiv vytváří. Uživatel při uploadu Go nepotřebuje.
 Archiv vybírá soubory z explicitního seznamu a veřejné slovníky `slovnik/*.csv`.
-Nový distribuční soubor mimo CSV přidejte do seznamu `files` v `tools/cmd/ztcpack/main.go`.
+Každý nový distribuční soubor včetně CSV přidejte do seznamu `files` v `tools/cmd/ztcpack/main.go`.
 Archiv neobsahuje `.git`, `.ztc`, pracovní audity ani osobní profil.
 Obsah schválených cest nástroj nesanitizuje. Před vydáním zkontrolujte také obsah veřejných CSV.
 Před vydáním ověřte manifesty, odkazy, obsah archivu a živou instalaci zvolenou cestou.

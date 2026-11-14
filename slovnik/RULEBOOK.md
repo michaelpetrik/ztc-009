@@ -9,6 +9,7 @@ Doplňují [specifikaci](../spec/ztc-009.md) a [formát CSV](README.md#sloupce).
 - Popište pokryté i nepokryté oblasti v dokumentu oboru.
 - Obecná hesla ukládejte do `ztc-009.csv`, softwarová do `software-development.csv`. Dokument oboru popisuje rozsah.
 - Nový publikovaný slovník uložte jako `slovnik/<obor>.csv`. Validátor načte všechny CSV v tomto adresáři.
+  Pro distribuci přidejte CSV a průvodní dokument také do seznamu `files` v `tools/cmd/ztcpack/main.go`.
 - Pracovní slovníky ukládejte mimo publikovaný adresář, standardně do místního `.ztc/dictionaries/`.
 - Náhrady musí být schválené ve stejném CSV souboru. Shody a střety významů mezi soubory ověřte při revizi.
 - Technické názvy a technická slovesa posuzujte podle sekce 1 specifikace. Chybějící heslo samo o sobě není zákaz slova.

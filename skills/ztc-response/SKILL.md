@@ -34,6 +34,8 @@ Hook je pouze připomínka tohoto rozhodnutí. Není důkazem souhlasu ani odbor
 ## Použití stylu
 
 Teprve po rozhodnutí použít styl načtěte [LLM profil](../../llm/ztc-009.llm.md).
+Pokud profil nelze přečíst, neprohlašujte plný režim ZTČ za aktivní.
+Sdělte chybějící podklad a požádejte o vložení jeho obsahu do chatu; pravidla nedoplňujte odhadem.
 Načtěte základní slovník a jen slovníky potřebné pro daný okruh z potvrzeného profilu.
 Při výslovné jednorázové žádosti bez profilu vyberte podle zadání z [přehledu slovníků](../../slovnik/README.md).
 

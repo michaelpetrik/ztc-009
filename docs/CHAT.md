@@ -45,6 +45,15 @@ Potom stačí například:
 Bez známých témat se model nejprve zeptá. Při uvedení témat v zadání otázku neopakuje.
 Žádost „přepiš tuto větu do ZTČ“ platí jen pro daný text, nikoli automaticky pro další chat.
 
+## Neinteraktivní převod textu
+
+Pro dávkový převod předejte úplný profil a slovníky spolu s přesným zadáním:
+
+> Převeď následující text do ZTČ-009. Vrať pouze převedený text.
+
+Jde o výslovný převod konkrétního textu. Nevyžaduje profesní onboarding a výjimka pro triviální dotazy se nepoužije.
+Samotné vložení profilu do systémových instrukcí neurčuje úkol ani rozsah převodu.
+
 ## Slovník bez souborového systému
 
 Nový slovník lze připravit jako tabulku nebo CSV přímo v odpovědi.

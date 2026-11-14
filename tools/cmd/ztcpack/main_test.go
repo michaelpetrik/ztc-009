@@ -32,11 +32,11 @@ func fixture(t *testing.T) string {
 func TestPackageResourcesAndExclusions(t *testing.T) {
 	root := fixture(t)
 	write(t, root, ".gitignore", "skills/credentials.json\n")
-	wanted := []string{".claude-plugin/marketplace.json", ".agents/plugins/marketplace.json", "skills/ztc-install/references/profile-template.md", "slovnik/software.csv", "docs/HARNESSES.md", "extensions/ztc.js", "tools/cmd/ztcvalidate/main.go", "tools/go.mod", "tools/LICENSE"}
+	wanted := []string{".claude-plugin/marketplace.json", ".agents/plugins/marketplace.json", "skills/ztc-install/references/profile-template.md", "slovnik/software-development.csv", "docs/HARNESSES.md", "extensions/ztc.js", "tools/cmd/ztcvalidate/main.go", "tools/go.mod", "tools/LICENSE"}
 	for _, name := range wanted {
 		write(t, root, name, "resource: "+name)
 	}
-	excluded := []string{"skills/credentials.json", "hooks/config.local.json", "extensions/private-notes.md", ".git/config", ".ztc/profile.json", "docs/audit/private.md", "skills/.env", "skills/key.pem", "skills/private.key", "skills/tests/test.md", "skills/.private/secret.json", "extensions/pi/index.test.ts", "tools/cmd/ztcvalidate/main_test.go", "tools/token.json", "tools/ztcvalidate"}
+	excluded := []string{"slovnik/klient-draft.csv", "skills/credentials.json", "hooks/config.local.json", "extensions/private-notes.md", ".git/config", ".ztc/profile.json", "docs/audit/private.md", "skills/.env", "skills/key.pem", "skills/private.key", "skills/tests/test.md", "skills/.private/secret.json", "extensions/pi/index.test.ts", "tools/cmd/ztcvalidate/main_test.go", "tools/token.json", "tools/ztcvalidate"}
 	for _, name := range excluded {
 		write(t, root, name, "SENSITIVE")
 	}

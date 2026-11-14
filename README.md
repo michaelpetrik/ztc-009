@@ -13,7 +13,7 @@ ZTČ-009 má 9 sekcí a 53 pravidel.
 | Soubor | Pro koho | Popis |
 | --- | --- | --- |
 | [`spec/ztc-009.md`](spec/ztc-009.md) | lidé | úplná specifikace s vysvětlením a příklady |
-| [`llm/ztc-009.llm.md`](llm/ztc-009.llm.md) | jazykové modely | system prompt, pravidla jako kontrolní seznam |
+| [`llm/ztc-009.llm.md`](llm/ztc-009.llm.md) | jazykové modely | profil s výběrem rozsahu, pravidla jako kontrolní seznam |
 | [`slovnik/ztc-009.csv`](slovnik/ztc-009.csv) | lidé a programy | slovník schválených a neschválených slov |
 | [`slovnik/software-development.csv`](slovnik/software-development.csv) | lidé a programy | frontend, backend, databáze a infrastruktura |
 | [`tools/`](tools) | vývojáři | validátor v jazyce Go |
