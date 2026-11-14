@@ -31,11 +31,12 @@ func fixture(t *testing.T) string {
 
 func TestPackageResourcesAndExclusions(t *testing.T) {
 	root := fixture(t)
-	wanted := []string{".claude-plugin/marketplace.json", ".agents/plugins/marketplace.json", "skills/ztc-response/references/example.md", "slovnik/software.csv", "docs/HARNESSES.md", "extensions/pi/index.js", "tools/cmd/ztcvalidate/main.go", "tools/go.mod", "tools/LICENSE"}
+	write(t, root, ".gitignore", "skills/credentials.json\n")
+	wanted := []string{".claude-plugin/marketplace.json", ".agents/plugins/marketplace.json", "skills/ztc-install/references/profile-template.md", "slovnik/software.csv", "docs/HARNESSES.md", "extensions/ztc.js", "tools/cmd/ztcvalidate/main.go", "tools/go.mod", "tools/LICENSE"}
 	for _, name := range wanted {
 		write(t, root, name, "resource: "+name)
 	}
-	excluded := []string{".git/config", ".ztc/profile.json", "docs/audit/private.md", "skills/.env", "skills/key.pem", "skills/private.key", "skills/tests/test.md", "skills/.private/secret.json", "extensions/pi/index.test.ts", "tools/cmd/ztcvalidate/main_test.go", "tools/token.json", "tools/ztcvalidate"}
+	excluded := []string{"skills/credentials.json", "hooks/config.local.json", "extensions/private-notes.md", ".git/config", ".ztc/profile.json", "docs/audit/private.md", "skills/.env", "skills/key.pem", "skills/private.key", "skills/tests/test.md", "skills/.private/secret.json", "extensions/pi/index.test.ts", "tools/cmd/ztcvalidate/main_test.go", "tools/token.json", "tools/ztcvalidate"}
 	for _, name := range excluded {
 		write(t, root, name, "SENSITIVE")
 	}
@@ -98,7 +99,13 @@ func TestFailurePreservesOutput(t *testing.T) {
 				if mode == "symlink-directory" {
 					target = t.TempDir()
 				}
-				if err := os.Symlink(target, filepath.Join(root, "skills", "external")); err != nil {
+				link := filepath.Join(root, "hooks", "ztc-context.sh")
+				if mode == "symlink-directory" {
+					link = filepath.Join(root, "hooks")
+				} else if err := os.MkdirAll(filepath.Dir(link), 0755); err != nil {
+					t.Fatal(err)
+				}
+				if err := os.Symlink(target, link); err != nil {
 					t.Fatal(err)
 				}
 			case "output-directory":

@@ -120,7 +120,10 @@ go run ./cmd/ztcpack -root .. -out ../dist/ztc-009.zip
 ```
 
 Go potřebuje pouze správce, který archiv vytváří. Uživatel při uploadu Go nepotřebuje.
-Archiv vybírá distribuční soubory; neobsahuje `.git`, `.ztc`, pracovní audity ani osobní profil.
+Archiv vybírá soubory z explicitního seznamu a veřejné slovníky `slovnik/*.csv`.
+Nový distribuční soubor mimo CSV přidejte do seznamu `files` v `tools/cmd/ztcpack/main.go`.
+Archiv neobsahuje `.git`, `.ztc`, pracovní audity ani osobní profil.
+Obsah schválených cest nástroj nesanitizuje. Před vydáním zkontrolujte také obsah veřejných CSV.
 Před vydáním ověřte manifesty, odkazy, obsah archivu a živou instalaci zvolenou cestou.
 
 ## Co ještě zbývá pro veřejné vydání
