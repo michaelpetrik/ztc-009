@@ -1,6 +1,8 @@
 # Instalace ZTČ-009 pro agenty
 
-Začněte načtením [instalačního skillu](../skills/ztc-install/SKILL.md).
+Pro běžný Claude a ChatGPT začněte [textovou instrukcí](CHAT.md). Plugin není podmínkou použití ZTČ.
+
+Pro prostředí s podporou skills začněte načtením [instalačního skillu](../skills/ztc-install/SKILL.md).
 Instalace nejprve zjistí profesi, témata a výjimky. Styl se nezapíná pro všechny dotazy automaticky.
 
 ## Přenosný balíček

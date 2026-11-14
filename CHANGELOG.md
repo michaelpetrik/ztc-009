@@ -6,6 +6,9 @@ Formát: [Keep a Changelog](https://keepachangelog.com/cs/1.1.0/). Verze: [SemVe
 
 ### Přidáno
 
+- Textová instrukce pro běžný Claude a ChatGPT bez pluginu a bez přístupu k souborům.
+- Rozlišení průběžné žádosti o ZTČ od převodu konkrétního textu; triviální odpovědi zůstávají přirozené.
+
 - Přenosné instalační a odpovědní skills s výběrem profesních témat a dobrovolným příspěvkem přes PR.
 - Pluginové manifesty pro Claude Code a Codex se společným hookem bez síťového přístupu.
 - Automatická validace oborových CSV a samostatná kontrola pracovního slovníku pomocí `-dictionary`.

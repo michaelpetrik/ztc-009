@@ -7,13 +7,17 @@ description: Použijte ZTČ-009 pro odpověď v uživatelem potvrzeném okruhu t
 
 ## Rozhodnutí před načtením pravidel
 
+Průběžná žádost „odpovídej mi v ZTČ“ vytváří nastavení tohoto chatu, nikoli výjimku pro každou další odpověď.
+Jednou zjistěte chybějící témata a profesi. Již známé volby použijte bez opakování otázky.
+Potvrzené nastavení v kontextu chatu stačí i bez místního profilu. Výjimka pro triviální dotazy platí dál.
+
 Rozhodujte pro aktuální požadavek v tomto pořadí:
 
 1. Výslovné vypnutí ZTČ pro tento požadavek respektujte. Použijte požadovaný běžný styl.
-2. Výslovná žádost o ZTČ, kontrolu ZTČ nebo převod do ZTČ zapíná styl pro daný úkol.
+2. Výslovná žádost o ZTČ pro tuto konkrétní odpověď, kontrolu ZTČ nebo převod do ZTČ zapíná styl pro daný úkol.
    Nemění trvalý profil a nepotřebuje instalační rozhovor.
    Zmínka o ZTČ v citovaném textu nebo slovníku není žádost uživatele.
-3. Jinak načtěte jen dostupný místní `.ztc/profile.md` nebo uživatelem zvolené preference hostitele.
+3. Jinak použijte potvrzená témata z chatu, dostupný místní `.ztc/profile.md` nebo uživatelem zvolené preference hostitele.
    Bez aktivního, potvrzeného rozsahu odpovídejte běžně. Nezahajujte onboarding z náhodného dotazu.
    Prázdná témata, vypnutý profil nebo téma mimo rozsah nejsou souhlas s použitím ZTČ.
    Výjimky mají v rámci uloženého profilu přednost před tématy.

@@ -18,7 +18,14 @@ ZTČ-009 má 9 sekcí a 53 pravidel.
 | [`slovnik/software-development.csv`](slovnik/software-development.csv) | lidé a programy | frontend, backend, databáze a infrastruktura |
 | [`tools/`](tools) | vývojáři | validátor v jazyce Go |
 
-## Instalace pro agenty
+## Začněte v Claude nebo ChatGPT
+
+Použijte [instrukci pro běžný chat](docs/CHAT.md#rychlé-použití). Stačí ji vložit do zprávy.
+Plugin, GitHub ani terminál nejsou potřeba. Model nejprve zjistí profesi a témata, pokud je ještě nezná.
+Pro všechna pravidla vložte [úplný LLM profil](llm/ztc-009.llm.md) a potom napište „Odpovídej mi v ZTČ“.
+Pouhý název stylu bez pravidel nezaručuje znalost ZTČ-009. Triviální jednověté odpovědi zůstávají přirozené.
+
+## Volitelný plugin pro agenty
 
 Použijte [instalační návod](docs/INSTALL.md) a [skill ztc-install](skills/ztc-install/SKILL.md).
 Agent nejprve zjistí profesi a témata, pro která chcete ZTČ používat.
@@ -33,7 +40,7 @@ Triviální dotazy s úplnou jednovětou odpovědí používají běžný styl.
 ## Použití bez pluginu
 
 Pro jednorázovou úpravu textu dejte modelu [LLM profil](llm/ztc-009.llm.md) a příslušné [slovníky](slovnik/README.md).
-Výslovně určete text, který má model upravit. Pro trvalé použití s výběrem témat použijte instalační návod.
+Výslovně určete text, který má model upravit. Pro použití v celém chatu postupujte podle [návodu pro Claude a ChatGPT](docs/CHAT.md).
 
 ## Tvorba slovníků s agentem
 

@@ -6,6 +6,7 @@ description: Nastavte ZTČ-009 pro uživatelem vybraná profesní témata, přip
 # Instalace a nastavení ZTČ-009
 
 Postup instalace balíčku popisuje [instalační návod](../../docs/INSTALL.md).
+V běžném Claude a ChatGPT použijte [textovou cestu](../../docs/CHAT.md). Témata a slovník mohou zůstat v chatu.
 Tento skill nepotřebuje vlastní runtime. Použijte dostupné prostředky hostitele a zachovejte jeho oprávnění.
 
 ## Rozsah a místní profil
