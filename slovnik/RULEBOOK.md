@@ -7,8 +7,9 @@ Doplňují [specifikaci](../spec/ztc-009.md) a [formát CSV](README.md#sloupce).
 
 - Určete obor, čtenáře a typy textů, které má slovník pokrýt.
 - Popište pokryté i nepokryté oblasti v dokumentu oboru.
-- Hesla ukládejte do společného souboru `ztc-009.csv`. Dokument oboru obsahuje seznam hesel a jejich použití.
-- Nevytvářejte další CSV bez úpravy validátoru a CI. Současná kontrola načítá jen společný soubor.
+- Obecná hesla ukládejte do `ztc-009.csv`, softwarová do `software-development.csv`. Dokument oboru popisuje rozsah.
+- Nový CSV soubor zaregistrujte v `tools/cmd/ztcvalidate/main.go`. CI používá tento validátor.
+- Náhrady musí být schválené ve stejném CSV souboru. Shody a střety významů mezi soubory ověřte při revizi.
 - Technické názvy a technická slovesa posuzujte podle sekce 1 specifikace. Chybějící heslo samo o sobě není zákaz slova.
 
 ## Heslo a význam

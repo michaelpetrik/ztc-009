@@ -14,7 +14,7 @@ Dokument je napsaný v ZTČ-009.
 
 | Návrh | Postup |
 | --- | --- |
-| Nové slovo | Založte issue „Nové slovo". Potom můžete poslat pull request se změnou souboru `slovnik/ztc-009.csv`. |
+| Nové slovo | Založte issue „Nové slovo". Potom můžete poslat pull request se změnou příslušného CSV souboru v `slovnik/`. |
 | Změna pravidla | Založte issue „Změna pravidla". Počkejte na diskusi. Potom pošlete pull request. |
 | Chyba v textu | Pošlete pull request přímo. |
 | Otázka nebo nápad | Napište do Discussions. |

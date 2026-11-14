@@ -3,7 +3,7 @@
 Použijte tento postup společně s [pravidly](RULEBOOK.md).
 
 1. S uživatelem určete obor, čtenáře a jeden skutečný text, na kterém budete pracovat.
-2. Porovnejte výrazy z textu se [společným slovníkem](ztc-009.csv).
+2. Porovnejte výrazy z textu s [přehledem slovníků](README.md#obsah-a-tvorba).
    Kontrolujte význam, nejen shodu slova.
 3. Zapište chybějící výrazy do pracovního seznamu. Začněte malou sadou potřebnou pro daný text.
 4. Pro každý výraz připravte základní tvar, slovní druh, význam a příklad.
@@ -12,7 +12,7 @@ Použijte tento postup společně s [pravidly](RULEBOOK.md).
 6. Použijte dohodnuté výrazy při úpravě textu. Nové případy postupně přidávejte do pracovního seznamu.
 7. Nabídněte [příspěvek do projektu](../CONTRIBUTING.md).
    Se souhlasem uživatele založte issue „Nové slovo“. Pro každý návrh uveďte obor a výsledek ověření.
-8. Pro PR doplňte hesla do `ztc-009.csv` a aktualizujte dokument oboru.
+8. Pro PR doplňte hesla do příslušného CSV slovníku a aktualizujte dokument oboru.
    Dodržte přesné pořadí sloupců. Pole s čárkou uzavřete do dvojitých uvozovek.
 9. Z kořene repozitáře spusťte kontroly:
 

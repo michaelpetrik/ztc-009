@@ -15,6 +15,7 @@ ZTČ-009 má 9 sekcí a 53 pravidel.
 | [`spec/ztc-009.md`](spec/ztc-009.md) | lidé | úplná specifikace s vysvětlením a příklady |
 | [`llm/ztc-009.llm.md`](llm/ztc-009.llm.md) | jazykové modely | system prompt, pravidla jako kontrolní seznam |
 | [`slovnik/ztc-009.csv`](slovnik/ztc-009.csv) | lidé a programy | slovník schválených a neschválených slov |
+| [`slovnik/software-development.csv`](slovnik/software-development.csv) | lidé a programy | frontend, backend, databáze a infrastruktura |
 | [`tools/`](tools) | vývojáři | validátor v jazyce Go |
 
 ## Jak použít ZTČ-009 s jazykovým modelem
@@ -31,7 +32,7 @@ Režimy:
 
 ## Pokyny pro agenty: slovník pro další obory
 
-Při tvorbě obsahu ověřte, zda [slovník](slovnik/ztc-009.csv) obsahuje potřebné výrazy a jejich významy.
+Při tvorbě obsahu ověřte, zda příslušný [slovník](slovnik/README.md#obsah-a-tvorba) obsahuje potřebné výrazy a jejich významy.
 Pokud obor uživatele není pokrytý nebo je pokrytý jen částečně, nabídněte společnou tvorbu oborového slovníku.
 
 Při tvorbě postupujte podle [pravidel slovníku](slovnik/RULEBOOK.md) a [návodu pro nový obor](slovnik/GUIDELINES.md).

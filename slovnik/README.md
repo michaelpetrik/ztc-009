@@ -5,14 +5,17 @@ Licence slovníku je CC0 1.0. Slovník můžete použít bez omezení.
 
 ## Obsah a tvorba
 
-Projekt používá jeden společný CSV slovník.
-Původní základ obsahuje 27 hesel pro obecné technické postupy, převážně s příklady z mechaniky.
-Počáteční sada [IT a vývoj softwaru](IT.md) přidává 24 hesel. Celkem je v CSV 51 hesel.
-Samostatné CSV slovníky pro jednotlivé obory zatím nejsou podporované.
+Projekt obsahuje dva slovníky se stejným formátem CSV:
+
+- [Základní slovník](ztc-009.csv): 27 hesel pro obecné technické postupy, převážně s příklady z mechaniky.
+- [Vývoj softwaru](software-development.csv): 89 hesel pro frontend, backend, databáze a infrastrukturu.
+
+Při psaní o softwaru používejte oba soubory. Rozsah a hranice významů popisuje [IT.md](IT.md).
+Validátor a CI kontrolují oba soubory. Každý soubor musí mít vlastní platné náhrady.
 
 - [Pravidla pro tvorbu slovníku](RULEBOOK.md): významy, stavy, příklady a přijetí změn.
 - [Postup pro nový obor](GUIDELINES.md): společná práce agenta a uživatele, příprava příspěvku a kontroly.
-- [IT a vývoj softwaru](IT.md): rozsah počáteční sady a hranice významů.
+- [IT a vývoj softwaru](IT.md): rozsah softwarového slovníku a hranice významů.
 
 ## Sloupce
 
