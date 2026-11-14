@@ -1,6 +1,6 @@
 # Vývoj softwaru: fullstack
 
-[Slovník vývoje softwaru](software-development.csv) obsahuje 89 hesel.
+[Slovník vývoje softwaru](software-development.csv) obsahuje 96 hesel.
 Používejte jej spolu se [základním slovníkem](ztc-009.csv), který obsahuje 27 hesel.
 Definice a příklady jsou v CSV. Nová hesla jsou návrhem pro odborné posouzení před přijetím PR.
 
@@ -15,6 +15,23 @@ Definice a příklady jsou v CSV. Nová hesla jsou návrhem pro odborné posouze
 - Infrastruktura: kontejnery, obrazy, virtuální stroje, clustery, uzly, síťové porty a doménová jména.
   Dále vyvažování zátěže, reverzní proxy, certifikáty, konfigurace, tajné údaje, metriky a protokoly událostí.
   Dodání softwaru pokrývají průběžná integrace, pipeline, artefakty, nasazení a návrat verze.
+
+## Zkratky
+
+Při prvním použití v samostatném textu napište zkratku a její význam v závorkách.
+Dále používejte stejnou zkratku ve stejném významu.
+
+- **CI (průběžná integrace)**.
+- **VM (virtuální stroj)**.
+- **FE (frontend)**.
+- **BE (backend)**.
+- **UI (uživatelské rozhraní)**.
+- **DB (databáze)**.
+- **PR (požadavek na sloučení)**.
+
+Zkratky mají vlastní řádky v CSV. Plné názvy zůstávají samostatnými hesly se stejným významem.
+`PR` zde znamená požadavek na sloučení, nikoli vztahy s veřejností.
+`CI` zde znamená průběžnou integraci. Zkratku `CD` bez upřesnění nepoužívejte: může označovat průběžné dodávání nebo průběžné nasazování.
 
 ## Hranice významů
 

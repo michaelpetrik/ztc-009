@@ -21,6 +21,16 @@ Doplňují [specifikaci](../spec/ztc-009.md) a [formát CSV](README.md#sloupce).
 - V příkazech používejte dokonavý vid. V zákazech používejte nedokonavý vid.
 - Víceslovný technický název zapisujte celý. Názvy produktů, příkazy a identifikátory kódu nepřekládejte svévolně.
 
+## Technické zkratky
+
+- Běžnou oborovou zkratku přidejte jako samostatné heslo vedle plného názvu.
+- Do `lemma` napište samotnou zkratku. Zachovejte obvyklou velikost písmen.
+- Do `meaning` napište plný název a jeho význam. Význam musí odpovídat heslu plného názvu.
+- Do `ok` vložte příklad ve tvaru `CI (průběžná integrace)` nebo `VM (virtuální stroj)`.
+- Při prvním použití v samostatném textu vysvětlete zkratku tímto způsobem. Dále lze používat samotnou zkratku.
+- Víceznačnou zkratku vymezte pro daný obor. Nespojujte odlišné významy do jednoho hesla.
+- Technické zkratky nemění zákaz běžných zkratek podle doporučení D-6.
+
 ## Stav a příklady
 
 - `approved` označuje povolený výraz s vyplněným významem a příkladem `ok`.

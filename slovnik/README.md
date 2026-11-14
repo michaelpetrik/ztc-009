@@ -8,7 +8,7 @@ Licence slovníku je CC0 1.0. Slovník můžete použít bez omezení.
 Projekt obsahuje dva slovníky se stejným formátem CSV:
 
 - [Základní slovník](ztc-009.csv): 27 hesel pro obecné technické postupy, převážně s příklady z mechaniky.
-- [Vývoj softwaru](software-development.csv): 89 hesel pro frontend, backend, databáze a infrastrukturu.
+- [Vývoj softwaru](software-development.csv): 96 hesel pro frontend, backend, databáze a infrastrukturu.
 
 Při psaní o softwaru používejte oba soubory. Rozsah a hranice významů popisuje [IT.md](IT.md).
 Validátor a CI kontrolují oba soubory. Každý soubor musí mít vlastní platné náhrady.
