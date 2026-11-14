@@ -15,30 +15,17 @@ git clone https://github.com/michaelpetrik/ztc-009.git
 
 Zachovejte složky `skills`, `llm`, `slovnik` a `spec` ve společném kořeni.
 Samotné zkopírování souboru `SKILL.md` rozbije odkazy na pravidla a slovníky.
-Instalace ani běžné odpovědi nepotřebují Go, Node.js, Python, síť ani účet GitHub.
+Textové instrukce a skills nepřidávají závislost na Go, Node.js ani Pythonu.
+Hostitel má vlastní provozní požadavky; Pi používá své běhové prostředí Node.js.
+Stažení balíčku vyžaduje síť, místní načtení již staženého obsahu nikoli. Účet GitHub není potřeba pro textovou cestu.
 Git je potřeba jen pro klonování nebo gitový příspěvek. Balíček lze získat také jako archiv.
 
-## Claude Code
+## Volba prostředí
 
-Z adresáře, kde chcete pracovat, spusťte Claude Code s absolutní cestou k balíčku:
-
-```sh
-claude --plugin-dir /cesta/k/ztc-009
-```
-
-Spusťte `/ztc-009:ztc-install` a odpovězte na otázku o profesi a tématech.
-Pro další relace znovu použijte `--plugin-dir`, nebo plugin nainstalujte podporovaným postupem hostitele.
-Balíček obsahuje manifest `.claude-plugin/plugin.json` a hook `UserPromptSubmit`.
-Kořenový `CLAUDE.md` tohoto balíčku není náhradou za instalační skill.
-
-## Codex
-
-Pro ručně instalovaný plugin v Codex desktop použijte postup podporovaný vaší verzí.
-Pluginové hooks nejsou určeny pro veřejný katalog; tento balíček tam není publikovaný.
-Kompatibilní manifest sám nepotvrzuje podporu pluginových hooks v každé verzi Codex CLI.
-Manifest je v `.codex-plugin/plugin.json`. Potom vyvolejte skill `ztc-install`.
-Podporu a důvěru hookům ověřte v `/hooks`. Samotná instalace není důkaz jejich aktivace.
-Pokud vaše verze lokální plugin neumí načíst, použijte přenosný postup níže.
+Konkrétní příkazy a dostupnost najdete v [návodu pro šest prostředí](HARNESSES.md).
+Obsahuje Claude chat, Cowork, Claude Code, ChatGPT, Codex a Pi.
+Pro Claude chat a Cowork lze připravit celý plugin ZIP. Pro Code a Codex jsou přibalené katalogy.
+Pi používá vlastní balíček a extension. GitHub příkazy vyžadují nejprve publikaci aktuálních souborů.
 
 ## Jiný agent nebo prostředí bez hooků
 

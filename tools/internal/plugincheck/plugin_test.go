@@ -166,3 +166,47 @@ func snapshot(t *testing.T, dir string) map[string]string {
 	}
 	return files
 }
+
+func TestOpenAIMarketplace(t *testing.T) {
+	var catalog struct {
+		Name      string `json:"name"`
+		Interface struct {
+			DisplayName string `json:"displayName"`
+		} `json:"interface"`
+		Plugins []struct {
+			Name   string `json:"name"`
+			Source struct {
+				Source string `json:"source"`
+				Path   string `json:"path"`
+			} `json:"source"`
+			Policy struct {
+				Installation   string `json:"installation"`
+				Authentication string `json:"authentication"`
+			} `json:"policy"`
+			Category string `json:"category"`
+		} `json:"plugins"`
+	}
+	readJSON(t, ".agents/plugins/marketplace.json", &catalog)
+	if catalog.Name != "ztc-009" || catalog.Interface.DisplayName == "" || len(catalog.Plugins) != 1 {
+		t.Fatal("expected one named ZTC plugin in the catalog")
+	}
+	plugin := catalog.Plugins[0]
+	if plugin.Source.Source != "local" || plugin.Source.Path != "./" {
+		t.Fatal("catalog must preserve the complete root package")
+	}
+	if plugin.Policy.Installation != "AVAILABLE" || plugin.Policy.Authentication != "ON_INSTALL" || plugin.Category != "Productivity" {
+		t.Fatal("catalog must declare installation, authentication, and category")
+	}
+	var manifest struct {
+		Name string `json:"name"`
+	}
+	readJSON(t, filepath.Join(plugin.Source.Path, ".codex-plugin/plugin.json"), &manifest)
+	if plugin.Name != manifest.Name {
+		t.Fatal("catalog plugin name must match its manifest")
+	}
+	for _, name := range []string{"skills/ztc-install/SKILL.md", "skills/ztc-response/SKILL.md", "llm/ztc-009.llm.md", "slovnik/ztc-009.csv"} {
+		if info, err := os.Stat(filepath.Join(root(t), plugin.Source.Path, name)); err != nil || !info.Mode().IsRegular() {
+			t.Fatalf("catalog package is missing %s", name)
+		}
+	}
+}

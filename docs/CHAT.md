@@ -59,5 +59,6 @@ Souhlas s používáním slovníku není souhlas s jeho zveřejněním.
 
 Pokud hostitel nabízí vlastní nebo projektové instrukce, lze do nich vložit stejný text.
 Dostupnost a rozsah těchto funkcí závisí na prostředí. Tento návod nevyžaduje jejich existenci.
-[Instalace pluginu](INSTALL.md) je volitelné rozšíření pro prostředí s podporou skills a hooků.
+[Instalace pluginu](HARNESSES.md) je volitelné rozšíření podle podpory konkrétního prostředí.
+Claude chat a Cowork mají vlastní upload cestu. Dostupnost v účtu a automatické hooky ověřte odděleně.
 Claude Code není totožný s běžným chatem Claude. Codex není totožný s běžným ChatGPT.

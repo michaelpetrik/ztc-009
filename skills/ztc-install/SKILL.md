@@ -1,6 +1,6 @@
 ---
 name: ztc-install
-description: Nastavte ZTČ-009 pro uživatelem vybraná profesní témata, připravte chybějící místní slovník a nabídněte dobrovolný příspěvek přes PR. Použijte při instalaci, změně nebo vypnutí ZTČ, nikoli při běžném dotazu.
+description: Nastavte, změňte nebo vypněte ZTČ-009 pro vybraná profesní témata, vytvořte místní slovník a nabídněte dobrovolný PR. Použijte při nastavení stylu, nikoli při běžném dotazu.
 ---
 
 # Instalace a nastavení ZTČ-009

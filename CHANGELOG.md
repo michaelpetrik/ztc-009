@@ -6,6 +6,10 @@ Formát: [Keep a Changelog](https://keepachangelog.com/cs/1.1.0/). Verze: [SemVe
 
 ### Přidáno
 
+- Audit snadné instalace v Claude, Cowork, Claude Code, ChatGPT, Codex a Pi.
+- Katalogy pluginů Claude Code a Codex, balíček Pi a jeho připomínka před odpovědí.
+- Vytvoření čistého plugin ZIPu příkazem `ztcpack` bez osobních dat a pracovních auditů.
+
 - Spouštěcí instrukce „Odpovídej mi v TZČ-009“ a rozpoznání této varianty názvu ZTČ-009.
 
 - Textová instrukce pro běžný Claude a ChatGPT bez pluginu a bez přístupu k souborům.

@@ -25,6 +25,12 @@ Plugin, GitHub ani terminál nejsou potřeba. Model nejprve zjistí profesi a t�
 Pro všechna pravidla vložte [úplný LLM profil](llm/ztc-009.llm.md) a potom napište „Odpovídej mi v TZČ-009“.
 Pouhý název stylu bez pravidel nezaručuje znalost ZTČ-009. Triviální jednověté odpovědi zůstávají přirozené.
 
+## Instalace podle prostředí
+
+[Claude, Cowork, Claude Code, ChatGPT, Codex a Pi](docs/HARNESSES.md): podporované cesty, příkazy a stav ověření.
+Pro Pi je připravená jednopříkazová cesta, nikoli ověřené univerzální instalační tlačítko.
+Veřejný GitHub při auditu ještě neobsahoval nový balíček; instalační příkazy z Gitu čekají na publikaci.
+
 ## Volitelný plugin pro agenty
 
 Použijte [instalační návod](docs/INSTALL.md) a [skill ztc-install](skills/ztc-install/SKILL.md).
