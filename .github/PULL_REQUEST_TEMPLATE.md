@@ -2,7 +2,7 @@
 
 <!-- Popište změnu v ZTČ-009. -->
 
-Souvisí s issue: #
+Související issue (volitelné):
 
 ## Typ
 
@@ -18,3 +18,6 @@ Souvisí s issue: #
 - [ ] Když jsem změnil specifikaci, změnil jsem také `llm/ztc-009.llm.md`.
 - [ ] Přidal jsem záznam do `CHANGELOG.md`.
 - [ ] `go test ./...` a `ztcvalidate` projdou.
+
+U slovníku uveďte obor, rozsah a způsob odborného ověření.
+Uveďte kontroly, které jste nespustili. Místní profil a soukromé příklady do PR nepatří.

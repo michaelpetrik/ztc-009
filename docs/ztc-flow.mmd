@@ -1,0 +1,10 @@
+flowchart TD
+  A[Instalační skill] --> B[Potvrzená témata a místní slovník]
+  B --> C[Nabídka konkrétního příspěvku]
+  C -->|Souhlas a dostupný nástroj| D[PR na GitHub]
+  C -->|Odmítnutí nebo bez nástroje| E[Pouze místní použití]
+  B --> F[Nový dotaz]
+  F --> G[Výběr stylu podle profilu a zadání]
+  G -->|Mimo rozsah nebo triviální dotaz| H[Běžná odpověď]
+  G -->|Zvolený obor a netriviální dotaz| I[ZTČ odpověď]
+  G -->|Výslovná žádost o ZTČ| I

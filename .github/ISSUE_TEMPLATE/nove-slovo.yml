@@ -7,6 +7,20 @@ body:
     attributes:
       value: Vyplňte jedno heslo. Pište v ZTČ-009. Nekopírujte text z ASD-STE100.
   - type: input
+    id: domain
+    attributes:
+      label: Obor a použití
+      description: Uveďte obor, cílové čtenáře a typ textu.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Odborné ověření
+      description: Kdo význam a příklad ověřil? Uveďte zdroj, nebo napište, že návrh na ověření čeká.
+    validations:
+      required: true
+  - type: input
     id: lemma
     attributes:
       label: Lemma
