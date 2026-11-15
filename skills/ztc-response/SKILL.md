@@ -14,6 +14,12 @@ Průběžná žádost „odpovídej mi v TZČ-009“ vytváří nastavení tohot
 Jednou zjistěte chybějící témata a profesi. Již známé volby použijte bez opakování otázky.
 Potvrzené nastavení v kontextu chatu stačí i bez místního profilu. Výjimka pro triviální dotazy platí dál.
 
+Příkaz `/ztc` obsluhuje [přepínač relace](../ztc/SKILL.md), nikoli běžná odpověď.
+Poslední `ztc_session_enabled` v kontextu relace má přednost před `enabled` uloženého profilu.
+Hodnota `false` vypíná průběžné použití i při aktivním uloženém profilu.
+Hodnota `true` jej zapíná pro potvrzená témata i při vypnutém uloženém profilu.
+Témata a výjimky zůstávají zachované. Samotný triviální dotaz ani jednorázový převod přepínač nemění.
+
 Rozhodujte pro aktuální požadavek v tomto pořadí:
 
 1. Výslovné vypnutí ZTČ pro tento požadavek respektujte. Použijte požadovaný běžný styl.
@@ -55,6 +61,7 @@ Kontrolní seznam nevypisujte. Chybějící údaje ani omezení nezakrývejte fo
 
 ## Nastavení
 
-Výslovnou změnu nebo trvalé vypnutí vyřiďte podle [instalačního skillu](../ztc-install/SKILL.md).
+Relační přepnutí vyřiďte podle [skillu ztc](../ztc/SKILL.md).
+Výslovnou změnu uloženého nastavení nebo trvalé vypnutí vyřiďte podle [instalačního skillu](../ztc-install/SKILL.md).
 Jednorázovou výjimku neukládejte jako trvalou změnu.
 Bez přístupu k trvalému profilu platí změna jen v této relaci; tuto hranici sdělte při změně nastavení.

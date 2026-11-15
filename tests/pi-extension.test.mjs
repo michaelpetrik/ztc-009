@@ -62,7 +62,7 @@ test("manifest exposes existing skills and the tested extension without dependen
   assert.deepEqual(manifest.pi.extensions, ["./extensions/ztc.js"]);
   assert.deepEqual(manifest.pi.skills, ["./skills"]);
   assert.equal(manifest.dependencies, undefined);
-  for (const name of ["ztc-install", "ztc-response"]) {
+  for (const name of ["ztc-install", "ztc-response", "ztc"]) {
     assert.ok((await readFile(path.join(root, "skills", name, "SKILL.md"), "utf8")).startsWith("---\n"));
   }
 });

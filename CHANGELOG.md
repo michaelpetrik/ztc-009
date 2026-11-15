@@ -6,6 +6,7 @@ Formát: [Keep a Changelog](https://keepachangelog.com/cs/1.1.0/). Verze: [SemVe
 
 ### Přidáno
 
+- Relační přepínač `ztc`, místní alias `/ztc` pro Claude Code a přednost relační volby před uloženým profilem.
 - Audit snadné instalace v Claude, Cowork, Claude Code, ChatGPT, Codex a Pi.
 - Katalogy pluginů Claude Code a Codex, balíček Pi a jeho připomínka před odpovědí.
 - Vytvoření čistého plugin ZIPu příkazem `ztcpack` s explicitním výběrem souborů, bez místního profilu a pracovních auditů.

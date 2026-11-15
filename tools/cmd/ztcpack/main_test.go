@@ -32,7 +32,7 @@ func fixture(t *testing.T) string {
 func TestPackageResourcesAndExclusions(t *testing.T) {
 	root := fixture(t)
 	write(t, root, ".gitignore", "skills/credentials.json\n")
-	wanted := []string{".claude-plugin/marketplace.json", ".agents/plugins/marketplace.json", "skills/ztc-install/references/profile-template.md", "slovnik/software-development.csv", "docs/HARNESSES.md", "extensions/ztc.js", "tools/cmd/ztcvalidate/main.go", "tools/go.mod", "tools/LICENSE"}
+	wanted := []string{"skills/ztc/SKILL.md", "skills/ztc/agents/openai.yaml", ".claude-plugin/marketplace.json", ".agents/plugins/marketplace.json", "skills/ztc-install/references/profile-template.md", "slovnik/software-development.csv", "docs/HARNESSES.md", "extensions/ztc.js", "tools/cmd/ztcvalidate/main.go", "tools/go.mod", "tools/LICENSE"}
 	for _, name := range wanted {
 		write(t, root, name, "resource: "+name)
 	}

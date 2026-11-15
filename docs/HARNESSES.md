@@ -4,6 +4,26 @@ Ověření dokumentace: 2026-11-14.
 Textová instrukce z [CHAT.md](CHAT.md) zůstává cestou bez instalace.
 Pluginový balíček neznamená automatické zapnutí stylu: po instalaci spusťte `ztc-install` a potvrďte témata.
 
+## Přepínání pro aktuální relaci
+
+Skill `ztc` přepíná aktuální stav zapnuto/vypnuto. Nemění uložený profil ani jiné relace.
+Při prvním použití vychází z aktivního nastavení chatu nebo profilu; bez něj začíná vypnutý.
+Při zapnutí použije potvrzená témata. Chybějící témata zjistí jednou otázkou.
+Jednověté triviální odpovědi stav nepřepínají. Jednorázový převod textu jej také nemění.
+
+- Claude Code: `/ztc-009:ztc`; krátký `/ztc` zpřístupní instalační skill místním projektovým aliasem.
+- Codex: v nabídce `/` vyberte skill `ztc`. Pokud klient přímé `/ztc` nenabízí, použijte `$ztc` nebo `/skills`.
+- Claude chat/Cowork: vyberte skill `ztc` z dostupné nabídky. Lokální alias Claude Code zde není zaručený.
+- Pi: použijte `/skill:ztc`.
+- Textový chat: po vložení instrukcí z CHAT.md pošlete samostatnou zprávu `/ztc`.
+
+Stav žije v kontextu relace. Nový prázdný chat znovu vychází z uloženého nastavení.
+Při shrnutí kontextu je nutné zachovat poslední stav. Bez dostupné historie nelze stav spolehlivě obnovit.
+Ověřte dvě přepnutí, následující profesní dotaz, nezměněný profil a druhou nezávislou relaci.
+
+[Claude: názvy skillů](https://code.claude.com/docs/en/skills#how-a-skill-gets-its-command-name),
+[OpenAI: nabídka příkazů a skills](https://learn.chatgpt.com/docs/reference/slash-commands).
+
 ## Stav distribuce
 
 Při auditu byl veřejný `main` na commitu `1b6c1f2`, bez nového pluginu.

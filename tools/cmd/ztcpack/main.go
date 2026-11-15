@@ -33,6 +33,8 @@ var files = []string{
 	"skills/ztc-install/SKILL.md",
 	"skills/ztc-install/references/profile-template.md",
 	"skills/ztc-response/SKILL.md",
+	"skills/ztc/SKILL.md",
+	"skills/ztc/agents/openai.yaml",
 	"slovnik/GUIDELINES.md",
 	"slovnik/IT.md",
 	"slovnik/LICENSE",

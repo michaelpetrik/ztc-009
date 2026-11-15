@@ -40,6 +40,23 @@ Ověřte čitelnost všech cest a použijte profesní dotaz, dotaz mimo rozsah a
 Pokud lze bezpečně vyzkoušet další relaci, ověřte obnovení profilu v ní.
 Bez tohoto testu označte trvalé načítání za neověřené. Nezaměňujte existenci souboru za aktivaci hostitele.
 
+## Příkaz pro relaci
+
+Po instalaci zpřístupněte [skill ztc](../ztc/SKILL.md) pro přepínání pouze aktuální relace.
+V Codexu ověřte položku `ztc` v nabídce `/`; při chybějící položce použijte `$ztc` nebo `/skills`.
+V Claude Code je pluginový příkaz `/ztc-009:ztc`.
+Pro požadovaný krátký `/ztc` vytvořte v potvrzeném projektu `.claude/skills/ztc/SKILL.md` jako místní alias.
+Nejdříve ověřte, že název nekoliduje s existujícím uživatelským nebo projektovým skillem; cizí soubor nepřepisujte.
+Alias má `name: ztc`, stručný popis a `disable-model-invocation: true` ve frontmatter.
+Jeho tělo instruuje agenta načíst skutečnou absolutní cestu k `skills/ztc/SKILL.md` v balíčku
+k vykonání jednoho uživatelského přepnutí v aktuální relaci. Cestu vložte jako data, ne jako shellový příkaz.
+Při aktualizaci umístění pluginu opravte jen tento označený alias. Při odinstalaci odstraňte pouze vlastní alias.
+Změna registrace příkazu není změna uloženého stavu ZTČ.
+V Claude chatu a Coworku použijte dostupný příkaz skillu z nabídky; neslibujte načítání lokálního aliasu.
+
+Ověřte dvě po sobě jdoucí vyvolání: zapnutí a vypnutí, nebo vypnutí a zapnutí podle výchozího stavu.
+Ověřte, že `.ztc/profile.md` zůstává stejný a další relace nepřebírá relační výjimku.
+
 ## Výběr a tvorba slovníku
 
 Přečtěte [přehled slovníků](../../slovnik/README.md) a vyberte základní slovník i vhodné obory.

@@ -8,6 +8,12 @@ ZTČ-009 má 9 sekcí a 53 pravidel.
 > ZTČ-009 není oficiální produkt organizace ASD. Pravidla, vysvětlení a příklady jsou nový text.
 > Originál ASD-STE100 získáte zdarma na <https://www.asd-ste100.org>. Podrobnosti jsou v souboru [NOTICE](NOTICE).
 
+Příkaz `/ztc` přepíná ZTČ-009 pouze pro aktuální relaci. Další vyvolání stav obrátí.
+Uložený profil zůstává stejný; triviální jednověté odpovědi jsou dál přirozené.
+Claude Code potřebuje pro krátký název místní alias; pluginový příkaz je `/ztc-009:ztc`.
+V Codexu vyberte skill `ztc` z nabídky `/`; dostupné je také explicitní `$ztc`.
+Podrobnosti uvádí [příkazy podle prostředí](docs/HARNESSES.md#přepínání-pro-aktuální-relaci).
+
 ## Obsah
 
 | Soubor | Pro koho | Popis |
