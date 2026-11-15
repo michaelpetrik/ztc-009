@@ -51,6 +51,7 @@ var files = []string{
 	"tools/cmd/ztcpack/main.go",
 	"tools/cmd/ztcguard/main.go",
 	"tools/cmd/ztcguard/check.go",
+	"tools/cmd/ztcguard/protocol.go",
 	"tools/cmd/ztcvalidate/main.go",
 	"tools/go.mod",
 	"tools/internal/dictionary/checker.go",

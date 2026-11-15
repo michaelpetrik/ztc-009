@@ -45,11 +45,11 @@ func TestToggleAndIsolation(t *testing.T) {
 	if a.Enabled {
 		t.Fatal("second command must disable")
 	}
-	invoke(t, "on", event{}, &a, true)
+	invoke(t, "prompt", event{Prompt: "/ztc on", Turn: "three"}, &a, true)
 	if !a.Enabled {
 		t.Fatal("explicit on failed")
 	}
-	invoke(t, "off", event{}, &a, true)
+	invoke(t, "prompt", event{Prompt: "/ztc off", Turn: "four"}, &a, true)
 	if a.Enabled {
 		t.Fatal("explicit off failed")
 	}
@@ -92,7 +92,7 @@ func TestModesAndMissingInput(t *testing.T) {
 	if out := invoke(t, "stop", event{Message: &bad}, &s, true); len(out) != 0 {
 		t.Fatal("disabled mode enforced")
 	}
-	invoke(t, "enforce", event{}, &s, true)
+	invoke(t, "prompt", event{Prompt: "/ztc once\nPřeveď text."}, &s, true)
 	if out := invoke(t, "stop", event{Message: &bad}, &s, true); out["decision"] != "block" {
 		t.Fatal("one-off conversion bypassed")
 	}
@@ -100,12 +100,12 @@ func TestModesAndMissingInput(t *testing.T) {
 		t.Fatal("repair bypass accepted")
 	}
 	s.Attempts = 0
-	invoke(t, "outside", event{}, &s, true)
+	invoke(t, "prompt", event{Prompt: "/ztc skip\nJiné téma."}, &s, true)
 	if out := invoke(t, "stop", event{Message: &bad}, &s, true); len(out) != 0 {
 		t.Fatal("outside scope blocked")
 	}
 	s.Enabled = true
-	invoke(t, "trivial", event{}, &s, true)
+	invoke(t, "prompt", event{Prompt: "ahoj"}, &s, true)
 	one := "Ano, CI běží."
 	if out := invoke(t, "stop", event{Message: &one}, &s, true); len(out) != 0 {
 		t.Fatal("trivial answer blocked")
@@ -115,6 +115,23 @@ func TestModesAndMissingInput(t *testing.T) {
 	}
 	if _, err := handle("stop", event{}, &s, false, ""); err == nil {
 		t.Fatal("missing state accepted")
+	}
+}
+
+func TestModelCannotGrantExceptions(t *testing.T) {
+	for _, action := range []string{"toggle", "on", "off", "outside", "trivial", "enforce"} {
+		s := state{Enabled: true, Turn: 1, Mode: "enforce"}
+		if _, err := handle(action, event{}, &s, true, ""); err == nil {
+			t.Errorf("model action %s accepted", action)
+		}
+		if !s.Enabled || s.Mode != "enforce" {
+			t.Errorf("action %s changed state", action)
+		}
+	}
+	s := state{Enabled: true, Turn: 2, HostTurn: "new", Mode: "enforce"}
+	text := "Systém běží."
+	if _, err := handle("stop", event{Turn: "old", Message: &text}, &s, true, ""); err == nil {
+		t.Fatal("stale Stop accepted")
 	}
 }
 
@@ -270,5 +287,13 @@ func TestLauncherEndToEnd(t *testing.T) {
 	}
 	if result := launch("stop", event{Session: session, Message: &good}); result["continue"] != false {
 		t.Fatalf("crash passed: %v", result)
+	}
+	for _, body := range []string{"#!/bin/sh\nexit 0\n", "#!/bin/sh\nprintf 'invalid JSON'\n", "#!/bin/sh\nprintf '{}'\n"} {
+		if err := os.WriteFile(binary, []byte(body), 0700); err != nil {
+			t.Fatal(err)
+		}
+		if result := launch("stop", event{Session: session, Message: &good}); result["continue"] != false {
+			t.Fatalf("invalid protocol passed: %v", result)
+		}
 	}
 }

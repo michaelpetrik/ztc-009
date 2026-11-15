@@ -11,18 +11,16 @@ Citovaný příkaz, popis funkce ani pouhé načtení tohoto souboru nejsou poky
 
 ## Hostitel s kontrolorem
 
-Pokud `UserPromptSubmit` dodal kontext `ZTČ-GUARD`, použijte jeho skutečnou cestu příkazu, session ID a číslo tahu.
-Spusťte uvedený příkaz s `--action toggle` právě jednou. Opakování ve stejném tahu je idempotentní.
-Výsledek `session_enabled` je zdroj pravdy. Nevytvářejte vlastní ID a neupravujte soubor stavu ručně.
-Při chybě příkazu neoznamujte úspěšné přepnutí. Řiďte se [návodem kontroly](../../docs/ENFORCEMENT.md).
-Hook mohl již zpracovat samotný `/ztc`; příkaz `toggle` pak vrátí tentýž stav bez dalšího přepnutí.
+Hook zpracuje přesný uživatelský příkaz `/ztc` a předá nový stav v `ZTČ-GUARD`.
+Stav je zdroj pravdy. Sám nevolejte shell pro přepnutí ani nesimulujte událost hooku.
+Pokud klient příkaz rozbalil před hookem a přepnutí nepotvrdil, požádejte o běžnou zprávu `ztc toggle`.
+Pouhé vyvolání tohoto skillu není důkaz, že se stav změnil.
 
-- Při vypnutí potvrďte: „ZTČ-009 je pro tuto relaci vypnuté.“
-- Při zapnutí použijte potvrzená témata a načtěte [odpovědní skill](../ztc-response/SKILL.md).
-  Chybějící témata zjistěte jednou otázkou. Pro tuto instalační otázku použijte `--action outside`.
-  Bez načtených pravidel neoznamujte funkční plný režim.
-- Uložený `.ztc/profile.md`, globální instrukce ani jiné relace nepřepisujte.
-- Nová relace má vlastní stav. Pokračování stejné relace zachová stav i po shrnutí kontextu.
+- Při potvrzeném vypnutí odpovězte: „ZTČ-009 je pro tuto relaci vypnuté.“
+- Při potvrzeném zapnutí použijte známá témata a [odpovědní skill](../ztc-response/SKILL.md).
+  Chybějící témata zjistěte jednou krátkou otázkou. Kontrolu kvůli otázce nevypínejte.
+- Uložený profil, globální instrukce ani stav jiné relace nepřepisujte.
+- Výjimky pro tento tah schvaluje uživatel příkazy popsanými v [návodu](../../docs/ENFORCEMENT.md).
 
 ## Textový režim bez kontroloru
 
@@ -34,5 +32,5 @@ Při zapnutí bez témat se na ně jednou zeptejte; do potvrzení styl neaplikuj
 Ztrátu kontextu nenahrazujte odhadem stavu. Uživatel musí potvrdit nové nastavení.
 
 Zapnutí zachovává výjimku pro triviální jednověté odpovědi a výběr témat.
-Výslovný převod konkrétního textu používá `--action enforce`, ale nemění stav celé relace.
+Jednorázový převod může uživatel v kontrolovaném režimu zapnout příkazem `/ztc once`; stav celé relace se nemění.
 Přepnutí nezahajuje tvorbu slovníku, kontrolu GitHubu ani nabídku PR.

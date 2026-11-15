@@ -3,7 +3,7 @@
 Posouzený commit: `3541b7c`.
 Výsledek: kontrolor vynucuje část formálních pravidel u spolupracujícího modelu.
 Není izolovanou ani neobejitelnou hranicí mezi modelem a uživatelem.
-Tento audit nemění implementaci; nálezy níže zůstávají otevřené.
+Audit níže zaznamenává původní stav. Následné opravy popisuje [uzavření auditu](2026-11-15-enforcement-fixes.md).
 
 ## Jak kontrola pracuje
 

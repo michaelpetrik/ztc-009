@@ -39,20 +39,25 @@ Stav zůstává při obnovení stejné relace i při shrnutí kontextu. Nové ID
 Soubory stavu se automaticky nemažou, aby obnovená relace neztratila nastavení.
 Nepřidávají se do projektu ani distribučního ZIPu.
 
-Agent dostane příkaz s přesným ID a číslem tahu. Staré číslo tahu kontrolor odmítne.
-Aktivní relace má kontrolu zapnutou jako výchozí stav každého tahu.
-Agent smí před odpovědí vybrat jen tyto odůvodněné výjimky:
+Model dostane stav, nikoli oprávnění vypnout kontrolu. Změnové akce CLI `off`, `outside` a další jsou odmítnuté.
+Přepnutí zpracuje `UserPromptSubmit` pouze z přesného uživatelského příkazu.
+Pokud klient rozbalí slash příkaz před hookem, použijte běžnou zprávu `ztc toggle`.
 
-- `--action outside`: téma mimo potvrzený rozsah nebo samotný instalační rozhovor.
-- `--action trivial`: skutečně triviální dotaz. Výstup musí mít jednu větu, jeden řádek a nejvýše 25 slov.
-- `--action enforce`: výslovný převod konkrétního textu, i při vypnuté relaci.
+Na prvním řádku uživatelského zadání lze použít:
 
-Instalační skill může po potvrzení rozsahu použít `--action on` nebo `--action off` pro jednoznačnou změnu relace.
-Samotné přepsání profilu již běžící relaci nezmění.
-Výjimky `outside`, `trivial` a `enforce` nemění stav celé relace. Další uživatelský tah výjimku zruší.
-Rozpoznání tématu a odborné triviality stále provádí model; není to deterministická jazyková klasifikace.
-Během oprav nelze příkazem změnit výjimku nebo přepnout relaci.
-Uživatel může opravný cyklus přerušit a v novém tahu kontrolu vypnout.
+- `/ztc skip`: výjimka pro jednu odpověď, například pro téma mimo zvolený obor.
+- `/ztc once`: jednorázový převod se zapnutou kontrolou i při vypnuté relaci.
+- `/ztc code`: povolení nového kódu v této odpovědi; okolní próza zůstává kontrolovaná.
+
+Podporovaný textový zápis je také `ztc skip`, `ztc once` a `ztc code` bez lomítka.
+Samostatné `/ztc on` a `/ztc off` nastaví relaci jednoznačně, bez obracení stavu.
+Automatická výjimka pro trivialitu platí pouze pro rozpoznané pozdravy a poděkování.
+Model nemůže svévolně schválit jiný triviální dotaz ani téma mimo rozsah.
+To je záměrně přísnější než instrukční režim běžného chatu.
+
+Výjimky platí jen pro aktuální tah. Opravné pokračování je zachovává včetně rozpočtu tří oprav.
+`Stop` s nesouhlasícím hostitelským ID tahu je odmítnutý.
+Bez ID tahu, například u Claude, závisí přiřazení na pořadí událostí dané relace.
 
 ## Co kontrolor blokuje
 
@@ -62,10 +67,15 @@ Uživatel může opravný cyklus přerušit a v novém tahu kontrolu vypnout.
 - Více než šest vět v odstavci.
 - První použití `CI`, `VM`, `FE`, `BE`, `UI`, `DB` nebo `PR` bez odpovídajícího plného názvu v závorce.
 - Neuzavřený blok kódu nebo neplatný formát výjimky `trivial`.
+- Konstrukci „musí být“ následovanou rozpoznaným krátkým trpným příčestím.
 
-Kontrolor zpracuje běžný Markdown. Kód, blokové a doslovné citace nekontroluje jako vlastní prózu.
-Odkazy kontroluje podle viditelného textu; jejich URL nemění. Závorku počítá jako jedno slovo.
-Nadpisy nejsou věty. Odstavce odděluje prázdný řádek, položky seznamu posuzuje odděleně.
+Kontrolor odstraní neviditelné formátovací znaky z kontrolní kopie a dekóduje HTML entity.
+Nadpisy a závorky neobcházejí limit: jejich obsah se počítá stejně jako jiná próza.
+Samotný kódový nebo citační obal není důvod k vynechání kontroly.
+Chráněné jsou pouze stejné úseky kódu nebo citací doložené aktuálním zadáním uživatele.
+Kontrolor uchovává jejich otisky, nikoli jejich obsah. Upravený úsek shodu ztratí.
+Nový kód potřebuje uživatelské povolení `/ztc code`. Model jej nesmí udělit sám.
+Odkazy kontroluje podle viditelného textu; jejich URL nemění.
 Nejde o úplný parser Markdownu ani morfologický analyzátor češtiny.
 
 Přesný význam, činný rod, vid sloves, odbornou pravdivost a všech 53 pravidel nelze tímto kontrolorem certifikovat.
@@ -78,10 +88,24 @@ Neplatný výstup vyvolá nejvýše tři opravné pokusy.
 Opakované pokračování vyvolané kontrolorem nesmí resetovat počet pokusů.
 Po třetí neúspěšné opravě hook vrátí `continue: false` a viditelně označí neověřenou odpověď.
 Chybějící text, stav, binární soubor nebo poškozený stav také znamenají oznámené selhání, nikoli úspěšnou kontrolu.
+Spouštěč ověřuje neprázdný JSON, povolené schéma rozhodnutí a verzi výstupního protokolu.
+Program `true`, prázdný výstup ani neplatný JSON nejsou úspěšná kontrola.
 
 `Stop` se spouští po generování. Již streamovaný text nemůže odebrat z obrazovky.
 Kontrola nezaručuje, že uživatel nikdy neuvidí chybný návrh, a nenahrazuje bezpečnostní hranici hostitele.
 Zakázaný hook, pád procesu nebo hostitelem ignorovaný výsledek ruší záruku tohoto opravného cyklu.
+
+## Hranice důvěry
+
+Plugin není bezpečnostní izolace vůči procesu se stejnými systémovými právy.
+Agent s neomezeným shellem může změnit binární soubor nebo stav, nahradit spouštěč či podvrhnout celý hook vstup.
+Ověření protokolu odhaluje chybný výstup; neověřuje kryptograficky identitu procesu ani původ události.
+Takový zásah nelze spolehlivě zakázat dalším pravidlem nebo tokenem uloženým ve stejném účtu.
+
+Pro odolnost proti takovému agentovi musí hostitel provozovat kontrolor a stav mimo jeho zápisová oprávnění.
+Musí také posílat události odděleným důvěryhodným kanálem a validovat text před zobrazením.
+Tato změna hostitele není součástí přenosného pluginu a není označená za hotovou.
+V podporovaném provozu jsou hook vstupy důvěryhodné a model nesmí upravovat řídicí soubory.
 
 ## Ověření instalace
 

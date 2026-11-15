@@ -23,13 +23,15 @@ type event struct {
 }
 
 type state struct {
-	Enabled  bool   `json:"enabled"`
-	Turn     int    `json:"turn"`
-	HostTurn string `json:"host_turn,omitempty"`
-	Toggled  int    `json:"toggled"`
-	Mode     string `json:"mode"`
-	Attempts int    `json:"attempts"`
-	Repair   string `json:"repair,omitempty"`
+	Enabled   bool            `json:"enabled"`
+	Turn      int             `json:"turn"`
+	HostTurn  string          `json:"host_turn,omitempty"`
+	Toggled   int             `json:"toggled"`
+	Mode      string          `json:"mode"`
+	Attempts  int             `json:"attempts"`
+	Repair    string          `json:"repair,omitempty"`
+	Trusted   map[string]bool `json:"trusted,omitempty"`
+	AllowCode bool            `json:"allow_code,omitempty"`
 }
 
 func stateFile(session string) (string, error) {
@@ -111,8 +113,6 @@ func initial(cwd string) (bool, error) {
 	return regexp.MustCompile(`(?m)^enabled: true\s*$`).Match(b) && regexp.MustCompile(`(?m)^scope_confirmed: true\s*$`).Match(b), nil
 }
 
-func quote(s string) string { return "'" + strings.ReplaceAll(s, "'", "'\"'\"'") + "'" }
-
 func handle(action string, e event, s *state, exists bool, executable string) (any, error) {
 	switch action {
 	case "prompt":
@@ -124,52 +124,68 @@ func handle(action string, e event, s *state, exists bool, executable string) (a
 			s.Enabled = enabled
 		}
 		continuation := s.Repair != "" && e.Prompt == s.Repair
+		if continuation && e.Turn != "" {
+			s.HostTurn = e.Turn
+		}
 		duplicate := e.Turn != "" && s.HostTurn == e.Turn
 		if !continuation && !duplicate {
 			s.Turn++
 			s.HostTurn, s.Mode, s.Repair, s.Attempts = e.Turn, "enforce", "", 0
-			switch strings.TrimSpace(e.Prompt) {
-			case "/ztc", "/ztc-009:ztc", "$ztc", "/skill:ztc":
-				s.Enabled = !s.Enabled
-				s.Toggled = s.Turn
+			s.Trusted = map[string]bool{}
+			_, spans, _ := prose(e.Prompt, nil, false)
+			for _, span := range spans {
+				s.Trusted[span] = true
 			}
-		}
-		command := quote(executable) + " --session " + quote(e.Session) + " --turn " + fmt.Sprint(s.Turn)
-		context := fmt.Sprintf("ZTČ-GUARD: session_enabled=%t; turn=%d. Tento stav má přednost před kontextem i profilem. ", s.Enabled, s.Turn)
-		context += "Příkaz pro tuto relaci: " + command + ". Přepínač ztc přidá --action toggle; pokud hook již přepnul, příkaz je idempotentní. "
-		context += "Při aktivním režimu kontroluje Stop odpověď: nejvýše 20 slov ve větě, 6 vět v odstavci, žádný středník ani obecné zkratky, vysvětlené CI/VM/FE/BE/UI/DB/PR. "
-		context += "Pro prokazatelně vyloučené téma přidej --action outside; pro triviální jednovětý dotaz --action trivial. Tyto výjimky platí jen pro tento tah. "
-		context += "Jednorázový výslovný převod zapíná kontrolu příkazem --action enforce i při vypnuté relaci. Chybějící témata zjisti jednou; --action outside použij pro samotný instalační rozhovor. "
-		context += "Výjimku nepoužívej k obejití chyb. Kód a citace zachovej. Při chybě Stop oprav celou odpověď bez změny významu."
-		return map[string]any{"hookSpecificOutput": map[string]string{"hookEventName": "UserPromptSubmit", "additionalContext": context}}, nil
-	case "toggle", "on", "off", "enforce", "outside", "trivial":
-		if !exists || s.Turn == 0 {
-			return nil, fmt.Errorf("nejdříve musí proběhnout UserPromptSubmit")
-		}
-		if action == "toggle" || action == "on" || action == "off" {
-			if s.Attempts > 0 {
-				return nil, errors.New("během opravy nelze přepnout relaci")
+			s.AllowCode = false
+			command := strings.TrimSpace(strings.SplitN(e.Prompt, "\n", 2)[0])
+			if strings.HasPrefix(command, "ztc ") {
+				command = "/" + command
 			}
-			if action == "on" || action == "off" {
-				s.Enabled = action == "on"
-				s.Toggled = s.Turn
-			} else if s.Toggled != s.Turn {
-				s.Enabled = !s.Enabled
-				s.Toggled = s.Turn
-			}
-		} else {
-			if s.Attempts > 0 {
-				return nil, errors.New("během opravy nelze vypnout kontrolu výjimkou")
-			}
-			s.Mode = action
-			if action == "enforce" {
+			switch command {
+			case "/ztc skip":
+				s.Mode = "outside"
+			case "/ztc once":
 				s.Mode = "force"
+			case "/ztc code":
+				s.AllowCode = true
 			}
+			switch strings.ToLower(strings.TrimSpace(e.Prompt)) {
+			case "ahoj", "ahoj!", "díky", "děkuji", "děkuju":
+				s.Mode = "trivial"
+			}
+			switch strings.TrimSpace(e.Prompt) {
+			case "/ztc on":
+				s.Enabled = true
+				s.Toggled = s.Turn
+			case "/ztc off":
+				s.Enabled = false
+				s.Toggled = s.Turn
+			case "/ztc", "/ztc-009:ztc", "$ztc", "/skill:ztc", "ztc toggle":
+				s.Enabled = !s.Enabled
+				s.Toggled = s.Turn
+			}
+		}
+		context := fmt.Sprintf("ZTČ-GUARD: session_enabled=%t; turn=%d; mode=%s. Stav řídí uživatelský příkaz, nikoli model. ", s.Enabled, s.Turn, s.Mode)
+		context += "Nepoužívej shell k přepínání ani simulaci hooků. Samostatný /ztc přepne relaci. Pokud klient rozbalil skill a přepnutí nenastalo, požádej uživatele o běžnou zprávu ztc toggle. "
+		context += "Uživatel může zadat /ztc skip na prvním řádku pro jednu odpověď mimo režim, /ztc once pro jednorázový převod a /ztc code pro povolení nového kódu. Sám tyto výjimky neuděluj. "
+		context += "Kontrola vyžaduje nejvýše 20 slov ve větě včetně závorek a nadpisů, šest vět v odstavci, bez středníku a obecných zkratek. Vysvětli CI/VM/FE/BE/UI/DB/PR. "
+		context += "Citace a kód jsou chráněné jen při shodě s podklady v aktuálním uživatelském zadání. Po chybě oprav celou odpověď bez změny významu."
+
+		return map[string]any{"hookSpecificOutput": map[string]string{"hookEventName": "UserPromptSubmit", "additionalContext": context}}, nil
+	case "toggle":
+		if !exists || s.Toggled != s.Turn || s.Turn == 0 {
+			return nil, errors.New("přepnutí vyžaduje uživatelský příkaz v UserPromptSubmit")
 		}
 		return map[string]any{"session_enabled": s.Enabled, "turn": s.Turn, "mode": s.Mode}, nil
+	case "on", "off", "outside", "trivial", "enforce":
+		return nil, errors.New("změna stavu z modelového nástroje není povolená; použijte uživatelský příkaz")
+
 	case "stop":
 		if !exists {
 			return nil, fmt.Errorf("chybí stav z UserPromptSubmit; kontrola neproběhla")
+		}
+		if e.Turn != "" && s.HostTurn != "" && e.Turn != s.HostTurn {
+			return nil, errors.New("Stop patří jinému tahu")
 		}
 		if (!s.Enabled && s.Mode != "force") || s.Mode == "outside" {
 			return map[string]any{}, nil
@@ -177,7 +193,7 @@ func handle(action string, e event, s *state, exists bool, executable string) (a
 		if e.Message == nil || strings.TrimSpace(*e.Message) == "" {
 			return nil, fmt.Errorf("hostitel neposkytl text odpovědi")
 		}
-		findings := check(*e.Message, s.Mode == "trivial")
+		findings := checkProtected(*e.Message, s.Mode == "trivial", s.Trusted, s.AllowCode)
 		if len(findings) == 0 {
 			return map[string]any{}, nil
 		}
@@ -234,6 +250,19 @@ func run(args []string, input io.Reader) (any, error) {
 }
 
 func main() {
+	if len(os.Args) == 3 && os.Args[1] == "--action" && os.Args[2] == "validate-output" {
+		data, err := io.ReadAll(io.LimitReader(os.Stdin, 65537))
+		if err != nil {
+			os.Exit(1)
+		}
+		result, err := validateOutput(data)
+		if err != nil {
+			os.Exit(1)
+		}
+		fmt.Printf("ZTC-GUARD/1 %s\n", result)
+		return
+	}
+
 	out, err := run(os.Args[1:], os.Stdin)
 	if err != nil {
 		msg := "ZTČ-009: kontrola není funkční: " + err.Error()

@@ -41,16 +41,17 @@ Hook je pouze připomínka tohoto rozhodnutí. Není důkazem souhlasu ani odbor
 ## Kontrola hotové odpovědi
 
 Pokud hook dodal kontext `ZTČ-GUARD`, běží automatická kontrola při ukončení odpovědi.
-Používejte jeho příkaz s přesným ID relace a číslem tahu. Nevymýšlejte vlastní stav.
+Stav a výjimky mění pouze hook podle uživatelského vstupu. Sám nespouštějte změnové příkazy kontroloru.
 
-- Výchozí aktivní režim kontroluje každý tah; žádná značka ve výstupu jej nevypíná.
-- Jen pro skutečně vyloučené téma nebo instalační otázku použijte `--action outside`.
-- Jen pro triviální jednovětý dotaz použijte `--action trivial`; kontrolor ověří jednu větu a nejvýše 25 slov.
-- Výslovný jednorázový převod používá `--action enforce`, i když je relace vypnutá.
-- V kontrolovaném režimu pište nejvýše 20 slov ve větě i v popisu; tento přísnější limit pokrývá oba typy textu.
-- Po vrácení chyb opravte celou odpověď bez změny významu. Nepřidávejte omluvný úvod ani popis kontroly.
-  Neobalujte vlastní prózu do kódu nebo citace kvůli obejití kontroly.
-- Během oprav nesmíte změnit rozsah ani vypnout kontrolu. Po vyčerpání pokusů nepředstírejte splnění pravidel.
+- Aktivní režim kontroluje každý tah. Pro vyloučené téma může uživatel zadat `/ztc skip` na první řádek zadání.
+- Automatická výjimka pro trivialitu je omezena na pozdravy a poděkování rozpoznané hookem.
+  Další výjimku musí určit uživatel; model ji nesmí vydávat za schválenou.
+- `/ztc once` od uživatele zapne kontrolu jedné odpovědi i při vypnuté relaci.
+- Nově generovaný kód je vyňatý jen po uživatelském `/ztc code`. Jinak jsou chráněné pouze doložené úseky zadání.
+- Pište nejvýše 20 slov ve větě včetně nadpisů a obsahu závorek. Zachovejte význam.
+- Po vrácení chyb opravte celou odpověď. Nevkládejte vlastní prózu do kódu nebo citací kvůli obejití kontroly.
+- Needitujte stav, binární soubor, spouštěč ani hooky za účelem získání úspěšné kontroly.
+- Po vyčerpání oprav nepředstírejte splnění pravidel.
 
 [Kontrolované vlastnosti a omezení](../../docs/ENFORCEMENT.md) rozlišují formální kontrolu od kontroly významu.
 Bez funkčního hooku nebo v textovém chatu neslibujte blokování odpovědi.

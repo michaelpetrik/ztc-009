@@ -32,8 +32,8 @@ Uložte také umístění balíčku, aby se cesty ke slovníkům řešily jednoz
 Po potvrzení témat a slovníků připojte jejich profil k rozhodování odpovědního skillu.
 Pro Claude Code a lokální Codex nejdříve dokončete [instalaci kontroloru](../../docs/ENFORCEMENT.md).
 Bez Go použijte již sestavený důvěryhodný kontrolor pro daný systém; pokud není dostupný, oznamte chybějící předpoklad.
-Po potvrzení rozsahu synchronizujte tuto relaci příkazem kontroloru s `--action on`; při vypnutí použijte `--action off`.
-Použijte přesné ID a číslo tahu z kontextu hooku. Uložený profil sám již běžící stav relace nezmění.
+Po potvrzení rozsahu aktivuje uživatel kontrolu příkazem `/ztc` nebo běžnou zprávou `ztc toggle`.
+Agent nesmí přepnutí simulovat shellovým příkazem. Uložený profil sám již běžící stav relace nezmění.
 Neslibujte vynucení bez běhu `UserPromptSubmit` a `Stop`. Textový režim musí být výslovně označený.
 S funkčním hookem ověřte, že hostitel načítá `skills/ztc-response/SKILL.md` a skutečnou cestu profilu.
 Bez hooků přidejte do podporovaných trvalých instrukcí hostitele jeden označený odkaz na tento skill a profil.

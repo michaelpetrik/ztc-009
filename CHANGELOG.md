@@ -6,6 +6,7 @@ Formát: [Keep a Changelog](https://keepachangelog.com/cs/1.1.0/). Verze: [SemVe
 
 ### Přidáno
 
+- Zpřísnění kontroloru po auditu: uživatelské výjimky, doložené citace a kód, normalizace textu a validace protokolu.
 - Kontrolor `ztcguard`: stav podle ID relace, formální kontrola odpovědi přes Stop hook a nejvýše tři opravné pokusy.
 - Relační přepínač `ztc`, místní alias `/ztc` pro Claude Code a přednost relační volby před uloženým profilem.
 - Audit snadné instalace v Claude, Cowork, Claude Code, ChatGPT, Codex a Pi.
