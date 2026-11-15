@@ -17,8 +17,9 @@ Jednověté triviální odpovědi stav nepřepínají. Jednorázový převod tex
 - Pi: použijte `/skill:ztc`.
 - Textový chat: po vložení instrukcí z CHAT.md pošlete samostatnou zprávu `/ztc`.
 
-Stav žije v kontextu relace. Nový prázdný chat znovu vychází z uloženého nastavení.
-Při shrnutí kontextu je nutné zachovat poslední stav. Bez dostupné historie nelze stav spolehlivě obnovit.
+S kontrolorem se stav ukládá podle ID relace a přežije shrnutí kontextu. Nový chat má vlastní stav.
+Bez kontroloru stav žije pouze v kontextu; tento textový režim neumí vynutit opravy.
+Před zapnutím hooků nainstalujte [ztcguard](ENFORCEMENT.md).
 Ověřte dvě přepnutí, následující profesní dotaz, nezměněný profil a druhou nezávislou relaci.
 
 [Claude: názvy skillů](https://code.claude.com/docs/en/skills#how-a-skill-gets-its-command-name),
@@ -142,7 +143,8 @@ Z adresáře `tools` spusťte:
 go run ./cmd/ztcpack -root .. -out ../dist/ztc-009.zip
 ```
 
-Go potřebuje pouze správce, který archiv vytváří. Uživatel při uploadu Go nepotřebuje.
+Go potřebuje správce pro vytvoření archivu a sestavení kontroloru `ztcguard`.
+Samotný upload a textové skills Go nepotřebují; vynucení hookem vyžaduje sestavený kontrolor.
 Archiv vybírá soubory z explicitního seznamu a veřejné slovníky `slovnik/*.csv`.
 Každý nový distribuční soubor včetně CSV přidejte do seznamu `files` v `tools/cmd/ztcpack/main.go`.
 Archiv neobsahuje `.git`, `.ztc`, pracovní audity ani osobní profil.

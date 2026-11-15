@@ -12,6 +12,9 @@ Příkaz `/ztc` přepíná ZTČ-009 pouze pro aktuální relaci. Další vyvolá
 Uložený profil zůstává stejný; triviální jednověté odpovědi jsou dál přirozené.
 Claude Code potřebuje pro krátký název místní alias; pluginový příkaz je `/ztc-009:ztc`.
 V Codexu vyberte skill `ztc` z nabídky `/`; dostupné je také explicitní `$ztc`.
+Claude Code a lokální Codex používají `Stop` hook s kontrolorem `ztcguard` pro formální kontrolu a opravy.
+Před aktivací hooků dokončete [instalaci a ověření kontroloru](docs/ENFORCEMENT.md).
+Bez něj není vynucení aktivní; běžný textový chat a Pi zůstávají instrukční.
 Podrobnosti uvádí [příkazy podle prostředí](docs/HARNESSES.md#přepínání-pro-aktuální-relaci).
 
 ## Obsah

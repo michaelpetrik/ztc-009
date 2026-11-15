@@ -1,0 +1,9 @@
+flowchart TD
+  A[Požadavek uživatele] --> B[UserPromptSubmit: stav relace]
+  B --> C[Model vytvoří odpověď]
+  C --> D[Stop: kontrola formátu]
+  D -->|Platné nebo vypnuté| E[Konec tahu]
+  D -->|Chyba, zbývá pokus| F[Konkrétní chyby modelu]
+  F --> C
+  D -->|Tři opravy selhaly| G[Zastavení s viditelným selháním]
+  B -->|Kontrolor chybí| G

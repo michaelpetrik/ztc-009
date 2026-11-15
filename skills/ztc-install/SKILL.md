@@ -7,7 +7,7 @@ description: Nastavte, změňte nebo vypněte ZTČ-009 pro vybraná profesní t�
 
 Postup instalace balíčku popisuje [instalační návod](../../docs/INSTALL.md).
 V běžném Claude a ChatGPT použijte [textovou cestu](../../docs/CHAT.md). Témata a slovník mohou zůstat v chatu.
-Tento skill nepotřebuje vlastní runtime. Použijte dostupné prostředky hostitele a zachovejte jeho oprávnění.
+Textový režim nepotřebuje vlastní runtime; vynucení hookem vyžaduje sestavený `ztcguard`. Použijte dostupné prostředky hostitele a zachovejte jeho oprávnění.
 
 ## Rozsah a místní profil
 
@@ -30,6 +30,11 @@ Uložte také umístění balíčku, aby se cesty ke slovníkům řešily jednoz
 ## Aktivace v hostiteli
 
 Po potvrzení témat a slovníků připojte jejich profil k rozhodování odpovědního skillu.
+Pro Claude Code a lokální Codex nejdříve dokončete [instalaci kontroloru](../../docs/ENFORCEMENT.md).
+Bez Go použijte již sestavený důvěryhodný kontrolor pro daný systém; pokud není dostupný, oznamte chybějící předpoklad.
+Po potvrzení rozsahu synchronizujte tuto relaci příkazem kontroloru s `--action on`; při vypnutí použijte `--action off`.
+Použijte přesné ID a číslo tahu z kontextu hooku. Uložený profil sám již běžící stav relace nezmění.
+Neslibujte vynucení bez běhu `UserPromptSubmit` a `Stop`. Textový režim musí být výslovně označený.
 S funkčním hookem ověřte, že hostitel načítá `skills/ztc-response/SKILL.md` a skutečnou cestu profilu.
 Bez hooků přidejte do podporovaných trvalých instrukcí hostitele jeden označený odkaz na tento skill a profil.
 Použijte zvolený rozsah a skutečné cesty. Před zápisem přečtěte stávající instrukce, zachovejte je a existující odkaz aktualizujte.
@@ -76,7 +81,7 @@ Když profesní slovník chybí nebo má mezery:
    Čekání na ověření neblokuje použití obecných pravidel a technických názvů podle specifikace.
 
 Ověřte čitelnost cest a strukturu CSV dostupnými prostředky.
-Při absenci validátoru neprohlašujte kontrolu za provedenou. Instalace nevyžaduje instalaci Go, Node.js ani GitHub CLI.
+Při absenci validátoru neprohlašujte kontrolu za provedenou. Textový režim nevyžaduje Go, Node.js ani GitHub CLI. Sestavení kontroloru vyžaduje Go.
 
 ## Dobrovolné zveřejnění slovníku
 

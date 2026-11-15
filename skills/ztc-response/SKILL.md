@@ -15,7 +15,8 @@ Jednou zjistěte chybějící témata a profesi. Již známé volby použijte be
 Potvrzené nastavení v kontextu chatu stačí i bez místního profilu. Výjimka pro triviální dotazy platí dál.
 
 Příkaz `/ztc` obsluhuje [přepínač relace](../ztc/SKILL.md), nikoli běžná odpověď.
-Poslední `ztc_session_enabled` v kontextu relace má přednost před `enabled` uloženého profilu.
+S funkčním kontrolorem má stav `ZTČ-GUARD` přednost před kontextem i uloženým profilem.
+Bez kontroloru má poslední `ztc_session_enabled` v kontextu relace přednost před `enabled` uloženého profilu.
 Hodnota `false` vypíná průběžné použití i při aktivním uloženém profilu.
 Hodnota `true` jej zapíná pro potvrzená témata i při vypnutém uloženém profilu.
 Témata a výjimky zůstávají zachované. Samotný triviální dotaz ani jednorázový převod přepínač nemění.
@@ -36,6 +37,23 @@ Rozhodujte pro aktuální požadavek v tomto pořadí:
 
 Jestliže styl neplatí, nenačítejte přísný profil ani oborové slovníky a nevysvětlujte uživateli interní rozhodování.
 Hook je pouze připomínka tohoto rozhodnutí. Není důkazem souhlasu ani odborné správnosti.
+
+## Kontrola hotové odpovědi
+
+Pokud hook dodal kontext `ZTČ-GUARD`, běží automatická kontrola při ukončení odpovědi.
+Používejte jeho příkaz s přesným ID relace a číslem tahu. Nevymýšlejte vlastní stav.
+
+- Výchozí aktivní režim kontroluje každý tah; žádná značka ve výstupu jej nevypíná.
+- Jen pro skutečně vyloučené téma nebo instalační otázku použijte `--action outside`.
+- Jen pro triviální jednovětý dotaz použijte `--action trivial`; kontrolor ověří jednu větu a nejvýše 25 slov.
+- Výslovný jednorázový převod používá `--action enforce`, i když je relace vypnutá.
+- V kontrolovaném režimu pište nejvýše 20 slov ve větě i v popisu; tento přísnější limit pokrývá oba typy textu.
+- Po vrácení chyb opravte celou odpověď bez změny významu. Nepřidávejte omluvný úvod ani popis kontroly.
+  Neobalujte vlastní prózu do kódu nebo citace kvůli obejití kontroly.
+- Během oprav nesmíte změnit rozsah ani vypnout kontrolu. Po vyčerpání pokusů nepředstírejte splnění pravidel.
+
+[Kontrolované vlastnosti a omezení](../../docs/ENFORCEMENT.md) rozlišují formální kontrolu od kontroly významu.
+Bez funkčního hooku nebo v textovém chatu neslibujte blokování odpovědi.
 
 ## Použití stylu
 

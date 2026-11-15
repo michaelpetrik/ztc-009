@@ -45,10 +45,18 @@ func configuredHook(t *testing.T) hook {
 	}
 	readJSON(t, "hooks/hooks.json", &config)
 	events := config.Hooks["UserPromptSubmit"]
-	if len(config.Hooks) != 1 || len(events) != 1 || len(events[0].Hooks) != 1 {
-		t.Fatal("expected one UserPromptSubmit hook")
+	if len(config.Hooks) != 2 || len(events) != 1 || len(events[0].Hooks) != 2 {
+		t.Fatal("expected reminder and guard hooks plus Stop")
 	}
 	h := events[0].Hooks[0]
+	guard := events[0].Hooks[1]
+	stop := config.Hooks["Stop"]
+	if guard.Type != "command" || !strings.HasSuffix(guard.Command, "ztc-guard.sh\" prompt") || len(stop) != 1 || len(stop[0].Hooks) != 1 {
+		t.Fatal("missing guard prompt/Stop integration")
+	}
+	if stop[0].Hooks[0].Type != "command" || !strings.HasSuffix(stop[0].Hooks[0].Command, "ztc-guard.sh\" stop") {
+		t.Fatal("Stop must invoke the guard synchronously")
+	}
 	if h.Type != "command" || h.Command == "" || h.Timeout < 1 || h.Timeout > 5 {
 		t.Fatalf("invalid hook: %+v", h)
 	}
@@ -129,6 +137,30 @@ func TestMissingRootIsFailSoft(t *testing.T) {
 		out, err := cmd.CombinedOutput()
 		if err != nil || len(out) != 0 {
 			t.Fatalf("missing root must succeed silently: %v %s", err, out)
+		}
+	}
+}
+
+func TestMissingGuardStopsVisibly(t *testing.T) {
+	for _, action := range []string{"prompt", "stop"} {
+		cmd := exec.Command("sh", filepath.Join(root(t), "hooks/ztc-guard.sh"), action)
+		var env []string
+		for _, item := range os.Environ() {
+			if !strings.HasPrefix(item, "ZTC_GUARD_BIN=") {
+				env = append(env, item)
+			}
+		}
+		cmd.Env = append(env, "ZTC_GUARD_BIN="+filepath.Join(t.TempDir(), "missing"))
+		out, err := cmd.CombinedOutput()
+		if err != nil {
+			t.Fatalf("launcher: %v %s", err, out)
+		}
+		var result map[string]any
+		if err := json.Unmarshal(out, &result); err != nil {
+			t.Fatal(err)
+		}
+		if result["continue"] != false || result["systemMessage"] == nil {
+			t.Fatalf("missing guard passed: %s", out)
 		}
 	}
 }

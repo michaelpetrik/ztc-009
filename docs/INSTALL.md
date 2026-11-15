@@ -36,8 +36,10 @@ Opakovaná instalace aktualizuje stejný odkaz, nevytváří další kopii instr
 Pokud hostitel nemá trvalé instrukce, platí nastavení jen v aktuální relaci.
 
 Skills tvoří přenosné jádro. Automatické spouštění závisí na hostiteli.
-Hook pro Claude Code a Codex vyžaduje POSIX `sh`. Na Windows bez tohoto shellu použijte skills bez hooku.
-Hook nepřepisuje odpovědi, neposílá data a nevytváří PR. Jen připomíná pravidla výběru stylu.
+Hooky pro Claude Code a Codex vyžadují POSIX `sh` a sestavený `ztcguard`.
+Před jejich aktivací dokončete [instalaci kontroloru](ENFORCEMENT.md#instalace-kontroloru).
+`UserPromptSubmit` spravuje stav relace a `Stop` vrací formální chyby modelu k opravě.
+Kontrolor neposílá data na síť ani nevytváří PR. Na Windows bez POSIX shellu je dostupný pouze textový režim.
 
 ## Výběr témat a chybějící slovník
 

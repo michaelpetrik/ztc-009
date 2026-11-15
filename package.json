@@ -27,7 +27,10 @@
     "docs/ztc-flow.mmd",
     "tools/**/*.go",
     "tools/go.mod",
-    "tools/LICENSE"
+    "tools/LICENSE",
+    "docs/ENFORCEMENT.md",
+    "docs/ztc-enforcement.svg",
+    "docs/ztc-enforcement.mmd"
   ],
   "pi": {
     "skills": [
